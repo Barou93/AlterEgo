@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "primary";
+  src: url("../assets/fonts/Trajan\ Regular.ttf");
+}
+
+@font-face {
+  font-family: "secondary";
+  src: url("../assets/fonts/RobotoSlab-VariableFont_wght.ttf");
+}
+
+$primaryfont: "primary", serif;
+$secondaryfont: "secondary", sans-serif;

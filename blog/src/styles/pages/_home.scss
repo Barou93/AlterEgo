@@ -1,0 +1,205 @@
+//Partie insight le gros titre avec l'image
+.insight {
+   padding: 0 20px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+
+   &__title {
+      text-align: center;
+      font-size: 45px;
+      font-weight: bold;
+      color: $primarycolor;
+      &__strong {
+         color: $secondarycolor;
+      }
+   }
+   &__img {
+      width: 80%;
+   }
+}
+
+.section {
+   margin: 20px;
+   &__insight {
+      margin: 25px 0;
+      text-align: center;
+      &__title {
+         font-size: 45px;
+         font-weight: bold;
+         padding: 25px;
+         color: $primarycolor;
+      }
+      &__strong {
+         color: $secondarycolor;
+      }
+   }
+   &__blockquote {
+      font-weight: italic;
+      font-size: 15px;
+      position: relative;
+      font-family: $secondaryfont;
+      margin: 60px auto;
+      position: relative;
+      width: 600px;
+
+      q {
+         quotes: "“" "”";
+         display: block;
+         font-size: 18px;
+         line-height: 1.25em;
+         margin-top: 25px;
+         span {
+            color: $secondarycolor;
+         }
+         &::before {
+            content: open-quote;
+            color: $secondarycolor;
+            font-size: 120px;
+            font-weight: bold;
+            left: 0;
+            top: 0;
+            position: absolute;
+            width: 90px;
+         }
+         &::after {
+            content: close-quote;
+            font-size: 120px;
+            position: absolute;
+            top: 100px;
+            color: $secondarycolor;
+         }
+      }
+   }
+}
+
+.illustration {
+   display: flex;
+   align-items: center;
+   justify-content: space-around;
+   position: relative;
+   &__content {
+      display: flex;
+      flex-direction: column;
+      p {
+         font-family: $secondaryfont;
+         color: $primarycolor;
+         font-size: 20px;
+         text-align: center;
+      }
+   }
+   &__img {
+      width: 200px;
+      height: 200px;
+   }
+   .emojis {
+      width: 250px;
+      height: 250px;
+      position: relative;
+   }
+   .emojis-p {
+      position: absolute;
+      top: calc(60% + 25px);
+      margin-left: 80px;
+   }
+}
+
+.user-experience {
+   padding: 15px;
+
+   &__title {
+      font-size: 45px;
+      font-weight: bold;
+      text-align: center;
+      color: $primarycolor;
+      margin: 50px;
+   }
+   &__container {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+   }
+   &__figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+
+      figcaption {
+         font-size: 17px;
+         font-family: $secondaryfont;
+         text-align: center;
+         margin-top: 15px;
+      }
+   }
+   &__img {
+      width: 80px;
+      height: 80px;
+   }
+   .cost {
+      width: 120px;
+      height: 120px;
+   }
+   .cost-p {
+      margin-bottom: 50px;
+   }
+}
+
+.work {
+   margin: 50px;
+   &__title {
+      font-size: 45px;
+      font-weight: bold;
+      margin: 30px;
+      text-align: center;
+      color: $primarycolor;
+   }
+   &__content {
+      font-size: 18px;
+      &__hgroup {
+         font-family: $secondaryfont;
+         margin: 40px;
+         &__headlines {
+            font-weight: bold;
+            color: $primarycolor;
+            margin-bottom: 20px;
+         }
+         &__smalltitle {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 50px;
+         }
+      }
+   }
+}
+
+.recent-articles {
+   margin: 50px;
+   &__title {
+      font-size: 45px;
+      color: $primarycolor;
+      margin: 25px;
+      text-align: center;
+      font-weight: bold;
+   }
+   &__container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+   &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+         width: 200px;
+         height: 200px;
+      }
+      p {
+         font-size: 12px;
+         font-family: $secondaryfont;
+         margin-top: 20px;
+         text-align: center;
+      }
+   }
+}

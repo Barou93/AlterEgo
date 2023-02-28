@@ -1,0 +1,40 @@
+//Partie Qui sommes-nous
+.aside {
+   margin: 50px 0;
+   &__hgroup {
+      text-align: center;
+      &__title {
+         font-size: 45px;
+         font-weight: bold;
+         color: $primarycolor;
+         margin-bottom: 15px;
+      }
+      &__details {
+         font-size: 18px;
+         font-family: $secondaryfont;
+      }
+   }
+   &__infos {
+      padding: 10px 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      font-family: $secondaryfont;
+      p {
+         font-size: 20px;
+      }
+      &__strong {
+         color: $secondarycolor;
+         font-weight: bold;
+      }
+      &__img {
+         width: 250px;
+         height: 250px;
+      }
+   }
+
+   .reverse {
+      display: flex;
+      flex-direction: row-reverse;
+   }
+}
