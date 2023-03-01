@@ -1,8 +1,5 @@
 import React from "react";
 import FooterLogo from "../../styles/assets/icons/logo_alter_ego_white.svg";
-import FacebookLogo from "../../styles/assets/icons/facebook-white.svg";
-import LinkedinLogo from "../../styles/assets/icons/linkedin-white.svg";
-import InstagramLogo from "../../styles/assets/icons/instagram-white.svg";
 
 const Footer = () => {
    return (

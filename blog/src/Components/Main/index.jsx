@@ -1,5 +1,5 @@
 import React from "react";
-import InsightImg from "../../styles/assets/icons/Group 7.svg";
+import InsightImg from "../../styles/assets/icons/teamwork.svg";
 import asideImg1 from "../../styles/assets/icons/Girl Mid.svg";
 import asideImg2 from "../../styles/assets/icons/Man Top.svg";
 import asideImg3 from "../../styles/assets/icons/Girl Mid2.svg";
