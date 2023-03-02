@@ -1,3 +1,4 @@
+//Home page contact-Us
 .contact-us {
    margin: 50px;
 
@@ -55,5 +56,83 @@
       border: 1px solid $secondarycolor;
       border-radius: 8px;
       margin-left: 15px;
+   }
+}
+
+//Contact-Us Page
+.contact-page {
+   margin: 100px;
+   &__container {
+      margin-top: 25px;
+      &__hgroup {
+         text-align: center;
+         &__title {
+            font-size: 40px;
+            font-weight: bold;
+            color: $primarycolor;
+         }
+         &__smalltitle {
+            font-size: 25px;
+            color: #000;
+            font-family: $secondaryfont;
+         }
+      }
+   }
+   &__newForm {
+      width: 100%;
+   }
+   &__infos {
+      &__form__container {
+         display: flex;
+         align-items: center;
+         margin: 0 auto;
+      }
+
+      &__address {
+         position: relative;
+         right: 50px;
+         background-color: $secondarycolor;
+         height: calc(100vh - 85px);
+         padding: 40px 15px;
+         flex: 40%;
+         font-family: $secondaryfont;
+         color: #fff;
+         &__title {
+            font-size: 45px;
+            font-weight: bold;
+         }
+         &__infos {
+            display: flex;
+            flex-direction: column;
+            margin: 50px 0;
+            font-size: 18px;
+         }
+      }
+   }
+
+   &__formgroup {
+      flex: 60%;
+   }
+
+   .icons {
+      width: 35px;
+      height: 35px;
+      color: #fff;
+   }
+   .fb {
+      &:hover {
+         color: #1877f2;
+      }
+   }
+
+   .lkdin {
+      &:hover {
+         color: #0077b5;
+      }
+   }
+   .insta {
+      &:hover {
+         color: #c32aa3;
+      }
    }
 }

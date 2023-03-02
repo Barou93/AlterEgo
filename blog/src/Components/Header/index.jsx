@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../styles/assets/icons/logo_alter_ego.svg";
 
 const Header = () => {
+   const [open, setOpen] = useState(false);
+
    return (
       <header class="header">
          <div class="header__logo">
