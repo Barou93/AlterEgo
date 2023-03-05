@@ -5,6 +5,11 @@
       justify-content: space-between;
       background: $primarycolor;
       font-family: $secondaryfont;
+      @include mobile-first {
+         flex-direction: column-reverse;
+         text-align: center;
+         padding: 30px 0;
+      }
 
       &__text {
          margin-left: 20px;
@@ -12,6 +17,10 @@
             font-size: 30px;
             color: #fff;
             margin-bottom: 50px;
+            @include mobile-first {
+               font-size: 25px;
+               margin-top: 15px;
+            }
          }
          &__btn {
             background: $secondarycolor;
@@ -26,6 +35,9 @@
          margin-top: 50px;
          img {
             width: 80%;
+            @include mobile-first {
+               width: 60%;
+            }
          }
       }
    }
@@ -34,9 +46,21 @@
       display: flex;
       justify-content: space-between;
       margin: 50px;
-      &__container {
-         &__img {
-            width: 80%;
+      @include mobile-first {
+         flex-direction: column-reverse;
+         text-align: center;
+         margin: 25px 0;
+      }
+
+      &__img {
+         width: 80%;
+         @include mobile-first {
+            width: 60%;
+         }
+      }
+      &__title {
+         @include mobile-first {
+            margin: 25px 0;
          }
       }
       &__headlines {
@@ -45,19 +69,15 @@
          font-size: 30px;
          font-weight: bold;
          margin-bottom: 25px;
+         @include mobile-first {
+            font-size: 25px;
+         }
       }
       &__text {
          font-family: $secondaryfont;
          font-size: 20px;
-      }
-
-      //Partie Fondateur & Citation
-      &__founder {
-         margin: 30px;
-         &__quote {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+         @include mobile-first {
+            font-size: 17px;
          }
       }
    }
@@ -72,10 +92,16 @@
             font-weight: bold;
             margin-bottom: 22px;
             color: $primarycolor;
+            @include mobile-first {
+               font-size: 22px;
+            }
          }
          &__smalltitle {
             font-family: $secondaryfont;
             font-size: 20px;
+            @include mobile-first {
+               font-size: 17px;
+            }
          }
       }
       &__img__container {
@@ -83,6 +109,9 @@
          display: flex;
          align-items: center;
          justify-content: space-between;
+         @include mobile-first {
+            flex-direction: column;
+         }
          &__box {
             background: #f5f5f5;
             box-shadow: $boxShadow-2;
@@ -91,6 +120,9 @@
             width: 320px;
             text-align: center;
             font-family: $secondaryfont;
+            @include mobile-first {
+               margin: 20px 0;
+            }
             &__img {
                width: 150px;
                height: 150px;
@@ -111,6 +143,7 @@
    &__whyus {
       margin: 50px;
    }
+   //Partie Fondateur & Citation
    &__founder {
       margin: 80px;
       &__quote {
@@ -118,6 +151,11 @@
          align-items: center;
          justify-content: space-between;
          font-family: $secondaryfont;
+
+         @include mobile-first {
+            flex-direction: column;
+         }
+
          &__name {
             font-size: 32px;
             color: $primarycolor;

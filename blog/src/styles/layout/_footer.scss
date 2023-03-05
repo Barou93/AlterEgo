@@ -6,6 +6,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      @include mobile-first {
+         flex-direction: column;
+      }
    }
    &__logo__img {
       width: 130px;

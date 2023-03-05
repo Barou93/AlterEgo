@@ -8,10 +8,20 @@
          font-weight: bold;
          color: $primarycolor;
          margin-bottom: 15px;
+         @include mobile-first {
+            font-size: 25px;
+         }
+
+         @include tablette {
+            font-size: 30px;
+         }
       }
       &__details {
          font-size: 18px;
          font-family: $secondaryfont;
+         @include mobile-first {
+            font-size: 15px;
+         }
       }
    }
    &__infos {
@@ -20,8 +30,15 @@
       align-items: center;
       justify-content: space-around;
       font-family: $secondaryfont;
+      @include mobile-first {
+         flex-direction: column-reverse;
+      }
       p {
          font-size: 20px;
+         @include mobile-first {
+            text-align: center;
+            margin-top: 25px;
+         }
       }
       &__strong {
          color: $secondarycolor;
@@ -36,5 +53,8 @@
    .reverse {
       display: flex;
       flex-direction: row-reverse;
+      @include mobile-first {
+         flex-direction: column-reverse;
+      }
    }
 }

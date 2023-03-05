@@ -10,6 +10,13 @@
       font-size: 45px;
       font-weight: bold;
       color: $primarycolor;
+      @include mobile-first {
+         font-size: 25px;
+      }
+
+      @include tablette {
+         font-size: 30px;
+      }
       &__strong {
          color: $secondarycolor;
       }
@@ -24,11 +31,15 @@
    &__insight {
       margin: 25px 0;
       text-align: center;
+
       &__title {
          font-size: 45px;
          font-weight: bold;
          padding: 25px;
          color: $primarycolor;
+         @include mobile-first {
+            font-size: 25px;
+         }
       }
       &__strong {
          color: $secondarycolor;
@@ -42,6 +53,10 @@
       margin: 60px auto;
       position: relative;
       width: 600px;
+      @include mobile-first {
+         text-align: center;
+         width: 100%;
+      }
 
       q {
          quotes: "“" "”";
@@ -61,6 +76,10 @@
             top: 0;
             position: absolute;
             width: 90px;
+            @include mobile-first {
+               font-size: 60px;
+               width: auto;
+            }
          }
          &::after {
             content: close-quote;
@@ -68,6 +87,10 @@
             position: absolute;
             top: 100px;
             color: $secondarycolor;
+            @include mobile-first {
+               font-size: 60px;
+               width: auto;
+            }
          }
       }
    }
@@ -78,6 +101,9 @@
    align-items: center;
    justify-content: space-around;
    position: relative;
+   @include mobile-first {
+      flex-direction: column;
+   }
    &__content {
       display: flex;
       flex-direction: column;
@@ -101,6 +127,9 @@
       position: absolute;
       top: calc(60% + 25px);
       margin-left: 80px;
+      @include mobile-first {
+         top: 85%;
+      }
    }
 }
 
@@ -113,17 +142,26 @@
       text-align: center;
       color: $primarycolor;
       margin: 50px;
+      @include mobile-first {
+         font-size: 25px;
+      }
    }
    &__container {
       display: flex;
       align-items: center;
       justify-content: space-around;
+      @include mobile-first {
+         flex-direction: column;
+      }
    }
    &__figure {
       display: flex;
       flex-direction: column;
       align-items: center;
       position: relative;
+      @include mobile-first {
+         margin-top: 50px;
+      }
 
       figcaption {
          font-size: 17px;
@@ -153,12 +191,18 @@
       margin: 30px;
       text-align: center;
       color: $primarycolor;
+      @include mobile-first {
+         font-size: 25px;
+      }
    }
    &__content {
       font-size: 18px;
       &__hgroup {
          font-family: $secondaryfont;
          margin: 40px;
+         @include mobile-first {
+            margin: 25px 0;
+         }
          &__headlines {
             font-weight: bold;
             color: $primarycolor;
@@ -168,6 +212,11 @@
             font-size: 16px;
             color: #000;
             margin-bottom: 50px;
+         }
+      }
+      img {
+         @include mobile-first {
+            width: 100%;
          }
       }
    }
@@ -181,16 +230,25 @@
       margin: 25px;
       text-align: center;
       font-weight: bold;
+      @include mobile-first {
+         font-size: 25px;
+      }
    }
    &__container {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      @include mobile-first {
+         flex-direction: column;
+      }
    }
    &__content {
       display: flex;
       flex-direction: column;
       align-items: center;
+      @include mobile-first {
+         margin-top: 25px;
+      }
       img {
          width: 200px;
          height: 200px;

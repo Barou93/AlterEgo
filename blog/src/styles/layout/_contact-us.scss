@@ -1,6 +1,9 @@
 //Home page contact-Us
 .contact-us {
    margin: 50px;
+   @include mobile-first {
+      margin: 0;
+   }
 
    &__title {
       font-size: 45px;
@@ -8,6 +11,9 @@
       color: $primarycolor;
       margin-bottom: 50px;
       text-align: center;
+      @include mobile-first {
+         font-size: 25px;
+      }
    }
    &__form {
       margin-top: 40px;
@@ -16,6 +22,9 @@
       padding: 40px 15px;
       width: 50%;
       margin: 0 auto;
+      @include mobile-first {
+         width: 100%;
+      }
       label {
          color: #fff;
          margin-bottom: 20px;
@@ -26,15 +35,25 @@
          justify-content: space-between;
          margin-top: 20px;
          width: 100%;
+         @include mobile-first {
+            flex-direction: column;
+         }
       }
       &__input {
          margin-left: 25px;
          width: 100%;
          display: flex;
          flex-direction: column;
+         @include mobile-first {
+            margin-left: 0;
+            padding: 0 15px;
+         }
 
          input {
             height: 40px;
+            @include mobile-first {
+               margin: 10px 0;
+            }
          }
       }
       &__textarea {
@@ -56,12 +75,19 @@
       border: 1px solid $secondarycolor;
       border-radius: 8px;
       margin-left: 15px;
+      @include mobile-first {
+         margin-left: 0;
+         width: 100%;
+      }
    }
 }
 
 //Contact-Us Page
 .contact-page {
    margin: 100px;
+   @include mobile-first {
+      margin: 10px 25px;
+   }
    &__container {
       margin-top: 25px;
       &__hgroup {
@@ -70,6 +96,10 @@
             font-size: 40px;
             font-weight: bold;
             color: $primarycolor;
+            @include mobile-first {
+               font-size: 30px;
+               margin: 25px 0;
+            }
          }
          &__smalltitle {
             font-size: 25px;
@@ -80,12 +110,18 @@
    }
    &__newForm {
       width: 100%;
+      @include mobile-first {
+         flex: 1;
+      }
    }
    &__infos {
       &__form__container {
          display: flex;
          align-items: center;
          margin: 0 auto;
+         @include mobile-first {
+            flex-direction: column;
+         }
       }
 
       &__address {
@@ -95,6 +131,12 @@
          height: calc(100vh - 85px);
          padding: 40px 15px;
          flex: 40%;
+         @include mobile-first {
+            flex: 1;
+            width: 100%;
+            right: 0;
+         }
+
          font-family: $secondaryfont;
          color: #fff;
          &__title {
@@ -112,6 +154,10 @@
 
    &__formgroup {
       flex: 60%;
+      @include mobile-first {
+         flex: 100%;
+         width: 100%;
+      }
    }
 
    .icons {
