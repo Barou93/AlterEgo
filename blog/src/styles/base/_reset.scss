@@ -1,12 +1,15 @@
 /*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
 html,
 body {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  font-family: $primaryfont;
-  color: $blackcolor;
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+   overflow-x: hidden;
+   font-family: $primaryfont;
+   color: $blackcolor;
+   scroll-margin: 100px 0 0 0;
+   word-break: break-word;
+   background-color: #f7fafb;
 }
 p,
 ol,
@@ -29,8 +32,8 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0;
-  padding: 0;
+   margin: 0;
+   padding: 0;
 }
 h1,
 h2,
@@ -38,47 +41,47 @@ h3,
 h4,
 h5,
 h6 {
-  font-size: 100%;
-  font-weight: normal;
+   font-size: 100%;
+   font-weight: normal;
 }
 ul {
-  list-style: none;
+   list-style: none;
 }
 button,
 input,
 select {
-  margin: 0;
+   margin: 0;
 }
 
 a {
-  text-decoration: none;
-  color: $blackcolor;
+   text-decoration: none;
+   color: $blackcolor;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: inherit;
+   box-sizing: inherit;
 }
 img,
 video {
-  height: auto;
-  max-width: 100%;
+   height: auto;
+   max-width: 100%;
 }
 iframe {
-  border: 0;
+   border: 0;
 }
 table {
-  border-collapse: collapse;
-  border-spacing: 0;
+   border-collapse: collapse;
+   border-spacing: 0;
 }
 td,
 th {
-  padding: 0;
+   padding: 0;
 }
 
 input:focus,
 select,
 textarea {
-  outline: none;
+   outline: none;
 }
