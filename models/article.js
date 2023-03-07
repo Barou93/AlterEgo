@@ -10,8 +10,9 @@ module.exports = (sequelize, DataTypes) => {
       static associate(models) {
          // define association here
          models.Article.belongsTo(models.Admin, {
-            foreignKey: "adminId",
-            targetKey: "id",
+            foreignKey: {
+               allowNull: false
+            }
          });
       }
    }
