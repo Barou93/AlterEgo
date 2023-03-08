@@ -16,9 +16,9 @@ const imageFilter = (req, file, cb) => {
 
 const storage = multer.diskStorage({
    destination: (req, file, cb) => {
-      let dir = `uploads/` + file.filename;
-      cb(null, dir);
+      cb(null, "uploads");
    },
+
    filename: (req, file, cb) => {
       let fileExtension = file.originalname
          .split(".")
@@ -35,10 +35,10 @@ const storage = multer.diskStorage({
 const limits = (req, file, cb) => {
    const fileSize = 5 * 1024 * 1024; // 5MB max file size
    if (file.size >= fileSize) {
-      cb("Vous ne pouvez pas télécharger un fichier de plus de 5MB", false));
+      cb("Vous ne pouvez pas télécharger un fichier de plus de 5MB", false);
    } else {
-    cb(null, false)
+      cb(null, false);
    }
 };
 
-module.exports = multer({storage: storage, fileFilter: imageFilter, limits})
+module.exports = multer({ storage: storage, fileFilter: imageFilter, limits });

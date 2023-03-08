@@ -12,7 +12,7 @@ router.post(
 );
 router.get("/", ArtileController.getArticles);
 router.get("/:id", ArtileController.getArticle);
-router.update(
+router.put(
    "/:id",
    upload.single("file"),
    checkAdmin,
