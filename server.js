@@ -6,6 +6,7 @@ const path = require("path");
 
 //Routes dependances
 const adminRoutes = require("./routes/admin.routes");
+const blogRoutes = require("./routes/article.routes");
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.get("/jwtId", requireAuth, (req, res) => {
 });
 
 app.use("/api/admin", adminRoutes);
+app.use("/api/article", adminRoutes);
 app.use("/uploads", express.static(path.join("uploads")));
 
 app.listen(process.env.PORT, () => {
