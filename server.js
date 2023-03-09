@@ -7,7 +7,7 @@ const path = require("path");
 //Routes dependances
 const adminRoutes = require("./routes/admin.routes");
 const articleRoutes = require("./routes/article.routes");
-
+const infosRoutes = require("./routes/information.routes");
 const app = express();
 
 require("dotenv").config("./.env");
@@ -33,6 +33,7 @@ app.get("/jwtId", requireAuth, (req, res) => {
 
 app.use("/api/admin", adminRoutes);
 app.use("/api/article", articleRoutes);
+app.use("/api/infos", infosRoutes);
 app.use("/uploads", express.static(path.join("uploads")));
 
 app.listen(process.env.PORT, () => {
