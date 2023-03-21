@@ -3,7 +3,7 @@ import Footer from "../../Components/Footer/Index";
 import Header from "../../Components/Header";
 import BlogImg from "../../styles/assets/img/user-experience.png";
 
-const BlogContent = () => {
+const Article = () => {
    return (
       <>
          <Header />
@@ -113,4 +113,4 @@ const BlogContent = () => {
    );
 };
 
-export default BlogContent;
+export default Article;

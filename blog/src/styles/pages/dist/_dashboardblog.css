@@ -1,0 +1,29 @@
+.dashboard__content__container__articles__title {
+  font-size: 35px;
+  font-weight: bold;
+}
+.dashboard__content__container__articles__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard__content__container__articles__img {
+  width: 40%;
+  height: 100%;
+}
+.dashboard__content__container__articles__content p {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+.dashboard__content__container__articles__btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.updated__article,
+.delete__article {
+  margin: 0 15px;
+  padding: 8px 5px;
+}

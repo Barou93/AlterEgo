@@ -1,6 +1,33 @@
-import Routes from "./Components/Routes";
+import {useEffect, useState} from 'react';
+import axios from 'axios';
+import Routes from './Components/Routes';
+import {UidContext} from './Components/AppContext';
+import {useDispatch} from 'react-redux';
+import {getAdmin} from './actions/admin.action';
 function App() {
-   return <Routes />;
+  const [uid, setUid] = useState(null);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchAdmin = async () => {
+      await axios({
+        method: 'get',
+        url: `${process.env.REACT_APP_API_URL}jwtid`,
+        withCredentials: true,
+      })
+        .then((res) => {
+          setUid(res.data);
+        })
+        .catch((err) => console.log('No token' + err.message));
+    };
+    fetchAdmin();
+
+    if (uid) dispatch(getAdmin(uid));
+  }, [uid, dispatch]);
+  return (
+    <UidContext.Provider value={uid}>
+      <Routes />
+    </UidContext.Provider>
+  );
 }
 
 export default App;

@@ -1,0 +1,6 @@
+.myEditor {
+  width: 60vw;
+  height: inherit;
+  border: 1px solid lightgray;
+  margin: 15px 0;
+}

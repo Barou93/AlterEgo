@@ -1,0 +1,34 @@
+.dashboard__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  box-shadow: $boxShadow-2;
+  background: $primarycolor;
+  &__logo {
+    padding: 5px 8px;
+    img {
+      width: 160px;
+    }
+  }
+  &__menu {
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+    &__link {
+      margin-left: 25px;
+      font-size: 17px;
+      font-weight: bold;
+      opacity: 0.9;
+      margin-right: 15px;
+      color: #fff;
+    }
+  }
+}
+
+.logout {
+  img {
+    width: 25px;
+    height: 25px;
+  }
+}

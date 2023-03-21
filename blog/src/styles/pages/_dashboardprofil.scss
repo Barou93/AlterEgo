@@ -1,0 +1,63 @@
+.dashboard__content__profil {
+  padding: 25px 0;
+  width: 100%;
+
+  &__container {
+    padding: 15px 18px;
+    background: #fff;
+    box-shadow: $boxShadow-2;
+    border: 1px solid lightgray;
+    max-width: 600px;
+  }
+  &__form {
+    margin: 25px 0;
+    &__input {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin: 12px 0;
+    }
+    input {
+      border: 1px solid lightgrey;
+    }
+  }
+  &__btns {
+    display: flex;
+    align-items: center;
+    margin: 25px 25px 25px 0;
+  }
+}
+
+.edit__input {
+  padding: 17px 8px;
+}
+
+.edit__btn,
+.cancel__btn {
+  padding: 8px;
+  background: $primarycolor;
+  color: #fff;
+  font-weight: bold;
+  opacity: 1;
+  font-size: 17px;
+  margin-right: 25px;
+  border: none;
+  cursor: pointer;
+}
+
+.new__btn {
+  background: #ddd;
+  color: #000;
+  opacity: 0.89;
+}
+.cancel__btn {
+  background-color: $deletebtn;
+  color: #fff;
+}
+
+.input__readonly {
+  background: #ddd;
+  cursor: not-allowed;
+  padding: 17px 8px;
+}

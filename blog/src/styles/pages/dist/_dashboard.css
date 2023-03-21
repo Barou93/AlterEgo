@@ -1,0 +1,7 @@
+.dashboard__container {
+  max-width: 1250px;
+}
+.dashboard__menu__container {
+  width: 249px;
+  height: 100vh;
+}

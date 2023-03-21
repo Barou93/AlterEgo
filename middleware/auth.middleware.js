@@ -1,38 +1,43 @@
-const jwt = require("jsonwebtoken");
-const models = require("../models");
+const jwt = require('jsonwebtoken');
+const models = require('../models');
 
-const { Admin } = models;
+const {Admin} = models;
 
 module.exports.checkAdmin = (req, res, next) => {
-   const token = req.cookies.jwt;
-   if (token) {
-      jwt.verify(token, process.env.TOKEN_SECRET, async (decoded, err) => {
-         if (err) {
-            res.locals.admin = null;
-            res.cookie("jwt", "", { maxAge: 1 });
-            next();
-         } else {
-            const admin = await Admin.findByPk(decoded.id);
-            res.locals.admin = admin;
-            next();
-         }
-      });
-   } else {
-      res.locals.admin = null;
-      next();
-   }
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
+      if (err) {
+        res.locals.admin = null;
+        res.cookie('jwt', '', {maxAge: 1});
+        next();
+      } else {
+        const admin = await Admin.findByPk(decodedToken.id);
+        res.locals.admin = admin;
+        next();
+      }
+    });
+  } else {
+    res.locals.admin = null;
+    next();
+  }
 };
 
 module.exports.requireAuth = (req, res, next) => {
-   jwt.verify(token, process.env.TOKEN_SECRET, async (decodedToken, err) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (err) {
-         console.log(err);
-         res.send(200).json("Pas de Token");
-         res.redirect("/login");
+        console.log(err);
+        //res.sendStatus(200).json('No token');
       } else {
-         const admin = await Admin.findByPk(decodedToken.id);
-         res.locals.admin = admin;
-         next();
+        const admin = await Admin.findByPk(decodedToken.id);
+        res.locals.admin = admin;
+        console.log(admin.id);
+        next();
       }
-   });
+    });
+  } else {
+    console.log('No Token');
+  }
 };
