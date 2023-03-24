@@ -24,6 +24,21 @@ module.exports.createArticle = async (req, res) => {
 
     const isCreated = await Article.findOne({where: {title}});
 
+    const articleImg =
+      file !== undefined ? `uploads/resized_${file.filename}` : null;
+    //let articleItem;
+
+    await sharp(file.path)
+      .resize(600, 488, {fit: 'cover'})
+      .jpeg({
+        quality: 100,
+        chromaSubsampling: '4:4:4',
+      })
+      .toFile(articleImg);
+    fs.unlinkSync(file.path);
+
+    imgUrl = articleImg;
+
     const articleItem = file
       ? {
           adminId: isAdmin.id,
@@ -31,21 +46,13 @@ module.exports.createArticle = async (req, res) => {
           content,
           image: `${req.protocol}://${req.get('host')}/` + imgUrl,
         }
-      : {adminId: isAdmin.id, title, content};
+      : {
+          adminId: isAdmin.id,
+          title,
+          content,
+        };
 
-    const articleImg = `uploads/_resized_${file.filename}`;
-    if (file) {
-      await sharp(file.path)
-        .resize(600, 488, {fit: 'cover'})
-        .jpeg({
-          quality: 100,
-          chromaSubsampling: '4:4:4',
-        })
-        .toFile(articleImg);
-      fs.unlinkSync(file.path);
-    }
-
-    imgUrl = articleImg;
+    console.log(articleItem);
 
     if (isCreated)
       return res.status(401).json(`l'article ${title} a déjà été créé.`);
@@ -100,40 +107,20 @@ module.exports.updateArticle = async (req, res) => {
     const isAdmin = await Admin.findByPk(adminId);
     const {title, content, image} = req.body;
 
-    const updateImg = `uploads/resized_${req.file.filename}`;
-
-    await sharp(file.path)
-      .resize(600, 488, {fit: 'cover'})
-      .jpeg({
-        quality: 100,
-        chromaSubsampling: '4:4:4',
-      })
-      .toFile(updateImg);
-    fs.unlinkSync(file.path);
-
-    if (file !== undefined) {
-      imgUrl = updateImg;
-    }
-
-    const articleItem = file
-      ? {
-          title,
-          content,
-          image: `${req.protocol}://${req.get('host')}/` + imgUrl,
-        }
-      : {title, content};
-
     if (articleId && isAdmin.id) {
       const updateArticle = await Article.update(
         {
-          ...articleItem,
+          title,
+          content,
         },
         {where: {id: articleId}}
       );
       if (updateArticle) {
         return res
           .status(200)
-          .json(`Mise à jour éffectuer avec succès ${updateArticle} `);
+          .json(
+            `La modification de l'article ${updateArticle.title} effectuée avec succès `
+          );
       } else {
         return res.status(400).json('Impossible de mettre à jour ce contenu');
       }

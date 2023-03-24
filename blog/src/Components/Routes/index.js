@@ -1,19 +1,19 @@
-import React, {useContext} from 'react';
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import React from 'react';
+import {Routes, Route} from 'react-router-dom';
 import Home from '../../Pages/Home';
 import Contact from '../../Pages/Contact';
 import Blog from '../../Pages/Blog';
 import Article from '../../Pages/Article';
+
 import About from '../../Pages/About';
 import CreateArticle from '../../Admin/CreateArticle';
 import GetArticle from '../../Admin/GetArticle';
-import ReadArticle from '../../Admin/ReadArticle';
 import Register from '../../Admin/Register';
 import Login from '../../Admin/Login';
 import GetInfos from '../../Admin/GetInfos';
 import Profil from '../../Admin/Profil';
 import ReadInfos from '../../Admin/ReadInfos';
-import UpdateArticle from '../../Admin/UpdateArticle';
+import UpdatedArticle from '../../Admin/UpdatedArticle';
 import DeleteArticle from '../../Admin/DeleteArticle';
 import DeleteInfos from '../../Admin/DeleteInfos';
 import Sidebar from '../Sidebar';
@@ -34,11 +34,10 @@ const index = () => {
         <Route path="/admin/article/create" element={<CreateArticle />} />
         <Route path="/admin/message" element={<GetInfos />} />
         <Route path="/admin/article" element={<GetArticle />} />
-        <Route path="/admin/article/:id" element={<ReadArticle />} />
-        <Route path="/admin/message/1" element={<ReadInfos />} />
+        <Route path="/admin/message/:id" element={<ReadInfos />} />
         <Route
-          path="/admin/article/update-article"
-          element={<UpdateArticle />}
+          path="/admin/article/update-article/:id"
+          element={<UpdatedArticle />}
         />
         <Route
           path="/admin/article/delete-article"

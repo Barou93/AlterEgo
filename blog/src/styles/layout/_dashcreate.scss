@@ -11,6 +11,7 @@
       padding: 25px 25px;
       max-height: 500px;
       overflow-y: auto;
+      width: 65%;
     }
     &__headline {
       font-size: 40px;
@@ -33,7 +34,35 @@
     &__editor {
       margin: 25px 0;
     }
+    &__file {
+      margin: 0 auto;
+
+      &__img {
+        display: none;
+        margin-top: 50px;
+        img {
+          width: 400px;
+          height: 300px;
+        }
+      }
+      &__label {
+        display: block;
+        background: $primarycolor;
+        color: #fff;
+        cursor: pointer;
+        padding: 12px 6px;
+        font-size: 18px;
+        width: 200px;
+        text-align: center;
+        margin: 0 auto;
+      }
+      input[type='file'] {
+        display: none;
+      }
+    }
     &__submit {
+      display: flex;
+      align-items: center;
       input[type='submit'] {
         background: $primarycolor;
         width: 15%;
@@ -44,6 +73,7 @@
         cursor: pointer;
         border: none;
         opacity: 0.92;
+        margin-right: 50px;
         &:hover {
           opacity: 1;
         }
@@ -53,4 +83,30 @@
 }
 .label {
   margin: 15px 0;
+  font-size: 18px;
+  padding: 12px 0;
+  font-weight: bold;
+}
+
+.cancel-article {
+  background: #ddd;
+  width: 15%;
+  color: #000;
+  font-size: 20px;
+  min-height: 42px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 42px;
+  opacity: 0.87;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.isUpload {
+  display: block;
+}
+
+.fileUpload {
+  display: none;
 }

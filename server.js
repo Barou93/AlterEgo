@@ -36,9 +36,6 @@ app.use("/uploads", express.static(path.join("uploads")));
 app.use('/api/admin', adminRoutes);
 app.use('/api/article', articleRoutes);
 app.use('/api/infos', infosRoutes);
-
-
-
 app.listen(process.env.PORT, () => {
   console.log(`Listenning on PORT ${process.env.PORT}`);
 });

@@ -10,13 +10,15 @@ import rootReducer from './reducers';
 //DevTools
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {BrowserRouter} from 'react-router-dom';
-import {getArticles} from './actions/article.action';
+import {getArticles} from './actions/articles.action';
+//import {getInfos} from './actions/infos.action';
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
 
 store.dispatch(getArticles());
+//store.dispatch(getInfos());
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

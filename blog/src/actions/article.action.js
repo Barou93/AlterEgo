@@ -1,21 +1,9 @@
 import axios from 'axios';
 
-export const GET_ARTICLES = 'GET_ARTICLES';
 export const CREATE_ARTICLE = 'CREATE_ARTICLE';
 export const READ_ARTICLE = 'READ_ARTICLE';
 export const UPDATE_ARTICLE = 'UPDATE_ARTICLE';
 export const DELETE_ARTICLE = 'DELETE_ARTICLE';
-
-export const getArticles = () => {
-  return (dispatch) => {
-    return axios
-      .get(`${process.env.REACT_APP_API_URL}api/article/`)
-      .then((res) => {
-        dispatch({type: GET_ARTICLES, payload: res.data});
-      })
-      .catch((err) => console.log(err));
-  };
-};
 
 export const createArticle = (data) => {
   return (dispatch) => {
@@ -46,9 +34,11 @@ export const updateArticle = (id, data) => {
       url: `${process.env.REACT_APP_API_URL}api/article/${id}`,
       data,
       withCredentials: true,
-    }).then((res) => {
-      dispatch({type: UPDATE_ARTICLE, payload: {id, data}});
-    });
+    })
+      .then((res) => {
+        dispatch({type: UPDATE_ARTICLE, payload: {id, data}});
+      })
+      .catch((err) => console.log(err));
   };
 };
 
@@ -58,8 +48,10 @@ export const deleteArticle = (id) => {
       method: 'delete',
       url: `${process.env.REACT_APP_API_URL}api/article/${id}`,
       withCredentials: true,
-    }).then((res) => {
-      dispatch({type: DELETE_ARTICLE, payload: {id}});
-    });
+    })
+      .then((res) => {
+        dispatch({type: DELETE_ARTICLE, payload: {id}});
+      })
+      .catch((err) => console.log(err));
   };
 };

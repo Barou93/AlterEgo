@@ -1,113 +1,114 @@
 .container {
-   background: #f1f2f1;
-   height: 100vh;
-   font-family: $secondaryfont;
+  background: #f1f2f1;
+  height: 100vh;
+  font-family: $secondaryfont;
 }
 
 .blog {
-   width: calc(100% - 2 * 32px);
-   max-width: 725px;
-   margin-left: auto;
-   margin-right: auto;
+  width: calc(100% - 2 * 32px);
+  max-width: 725px;
+  margin-left: auto;
+  margin-right: auto;
 
-   &__container {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: calc(4 * 8px);
-   }
-   //Resumer de l'article du blog
-   &__resume {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 20px 0;
-      &__img {
-         margin-top: 27px;
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: calc(4 * 8px);
+  }
+  //Resumer de l'article du blog
+  &__resume {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px 0;
+    &__img {
+      margin-top: 27px;
 
-         img {
-            width: 160px;
-            height: 160px;
-            max-width: 200px;
-            object-fit: cover;
-         }
+      img {
+        width: 160px;
+        height: 160px;
+        max-width: 200px;
+        object-fit: cover;
       }
-      &__text {
-         margin: 12px 25px;
+    }
+    &__text {
+      margin: 12px 25px;
 
-         &__insight {
-            font-size: 30px;
-            color: #000;
-            font-weight: bolder;
-            margin: 20px 0;
-         }
-         &__infos {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 20px 0;
-         }
-         &__details {
-            font-size: 15px;
-            width: 80%;
-            h3 {
-               overflow: hidden;
-               padding-right: 16px;
-               line-height: 24px;
-               max-height: calc(24px * 3);
-               font-size: 20px;
-               width: 600px;
-               position: relative;
-               text-align: justify;
-               //white-space: nowrap;
-               //background: #000;
-               &::after {
-                  content: "...";
-                  position: absolute;
-                  bottom: 0;
-                  right: 0;
-               }
-            }
-         }
-      }
-   }
-
-   //Blog partie contenu à lire
-   &__single {
-      max-width: 700px;
-      width: calc(100% - 32px * 2);
-      margin-left: auto;
-      margin-right: auto;
-      font-family: $secondaryfont;
-      &__headline {
-         font-size: 65px;
-         line-height: 1.2;
-         color: $primarycolor;
-         font-weight: bold;
-         margin: 15px 0;
+      &__insight {
+        font-size: 30px;
+        color: #000;
+        font-weight: bolder;
+        margin: 20px 0;
       }
       &__infos {
-         opacity: 0.6;
-         font-size: 17px;
-         &__date {
-            margin-right: 50px;
-         }
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 20px 0;
       }
-      &__img {
-         img {
-            width: 100%;
-            object-fit: cover;
-         }
+      &__details {
+        font-size: 15px;
+        width: 80%;
+
+        h3 {
+          overflow: hidden;
+          padding-right: 16px;
+          line-height: 24px;
+          max-height: calc(24px * 3);
+          font-size: 20px;
+          width: 600px;
+          position: relative;
+          text-align: justify;
+          //white-space: nowrap;
+          //background: #000;
+          &::after {
+            content: '...';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+          }
+        }
       }
-      &__text {
-         font-size: 18px;
-         margin-top: 1rem;
-         margin-bottom: 30px;
-         line-height: 1.8;
+    }
+  }
+
+  //Blog partie contenu à lire
+  &__single {
+    max-width: 700px;
+    width: calc(100% - 32px * 2);
+    margin-left: auto;
+    margin-right: auto;
+    font-family: $secondaryfont;
+    &__headline {
+      font-size: 65px;
+      line-height: 1.2;
+      color: $primarycolor;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+    &__infos {
+      opacity: 0.6;
+      font-size: 17px;
+      &__date {
+        margin-right: 50px;
       }
-   }
+    }
+    &__img {
+      img {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+    &__text {
+      font-size: 18px;
+      margin-top: 1rem;
+      margin-bottom: 30px;
+      line-height: 1.8;
+    }
+  }
 }
 
 .page-s {
-   padding-top: calc(5 * 8px);
-   padding-bottom: calc(5 * 8px);
+  padding-top: calc(5 * 8px);
+  padding-bottom: calc(5 * 8px);
 }

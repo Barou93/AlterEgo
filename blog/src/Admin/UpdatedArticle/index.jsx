@@ -1,44 +1,52 @@
-import React, {useRef, useState, useMemo} from 'react';
+import DOMPurify from 'dompurify';
+import React, {useRef, useState, useEffect, useMemo} from 'react';
 import ReactQuill from 'react-quill';
-import Quill from 'quill';
+//import Quill from 'quill';
 import 'react-quill/dist/quill.snow.css';
 import {useDispatch, useSelector} from 'react-redux';
+import {Link, useParams} from 'react-router-dom';
+import {readArticle, updateArticle} from '../../actions/article.action';
 import {getArticles} from '../../actions/articles.action';
-import {createArticle} from '../../actions/article.action';
-//import ImgIcon from '../../styles/assets/icons/article-img.svg';
-import {Navigate, Link} from 'react-router-dom';
 
-const CreateArticle = () => {
-  const [content, setContent] = useState('');
-  //const [editor, setEditor] = useState(null);
-  const [title, setTitle] = useState('');
-  const [file, setFile] = useState();
+const UpdatedArticle = () => {
+  const [updateContent, setUpdateContent] = useState('');
+  const [isUpdated, setIsUpdated] = useState(false);
+  const [isLoad, setIsLoad] = useState(true);
+  const [editTitle, setEditTitle] = useState('');
+  const [updateFile, setUpdateFile] = useState();
   const [isUpload, setisUpload] = useState(false);
   const [imagePreview, setImagePreview] = useState();
   const quillRef = useRef(null);
   const dispatch = useDispatch();
-  const admin = useSelector((state) => state.adminReducer);
+  const oneArticle = useSelector((state) => state.articleReducer);
 
-  const handleChange = (value) => {
-    setContent(value);
+  const {id: articleId} = useParams();
+  useEffect(() => {
+    if (isLoad) {
+      dispatch(readArticle(articleId));
+      setIsLoad(false);
+    }
+  }, [dispatch, isLoad, articleId]);
+
+  const handleUpdate = (value) => {
+    setUpdateContent(value);
   };
   const handleDownload = (e) => {
     const fileImg = URL.createObjectURL(e.target.files[0]);
     setisUpload(true);
     setImagePreview(fileImg);
-    setFile(e.target.files[0]);
+    setUpdateFile(e.target.files[0]);
   };
 
-  //console.log(admin);
   const modules = useMemo(
     () => ({
       toolbar: {
-        contair: [
-          [{heaer: [1, 2, 3, 4, 5, 6, false]}],
+        container: [
+          [{header: [1, 2, 3, 4, 5, 6, false]}],
           ['bold', 'italic', 'underline', 'strike'],
           [
             {
-              clor: [
+              color: [
                 '#000000',
                 '#e60000',
                 '#ff9900',
@@ -83,92 +91,100 @@ const CreateArticle = () => {
     []
   );
 
-  const handlePost = async () => {
-    if ((title && content) || (title && content && file)) {
+  const handleEditPost = async () => {
+    if (editTitle || updateContent) {
       const data = new FormData();
-      data.append('adminId', admin.id);
-
-      if (title) data.append('title', title);
-      if (content) data.append('content', content);
-      if (file) data.append('file', file);
-      console.log(data);
-      await dispatch(createArticle(data));
-      cancelPost();
+      if (editTitle) data.append('title', editTitle);
+      if (updateContent) data.append('content', updateContent);
+      await dispatch(updateArticle(articleId, data));
+      setIsUpdated(false);
+      //cancelPost();
       window.location = '/admin/article';
     } else {
       console.log('Veuillez entrer un message');
     }
   };
 
-  //console.log(file);
-
   const cancelPost = () => {
-    setFile('');
-    setTitle('');
-    setContent('');
+    setUpdateFile('');
+    setEditTitle('');
+    setUpdateContent('');
   };
-
   return (
     <div className="dashboard__content__container">
       <div className="dashboard__content__create__article__container">
         <h1 className="dashboard__content__create__article__headline">
-          Créer un article
+          Mettre à jour
         </h1>
         <div className="dashboard__content__create__article__box">
           <form
-            onSubmit={handlePost}
+            onSubmit={handleEditPost}
             className="dashboard__content__create__article__form"
           >
             <div className="dashboard__content__create__article__title">
               <label className="label" htmlFor="title">
                 Titre de l'article
               </label>
-              <input
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                type="text"
-                placeholder="Ecrivez le titre ici"
-              />
+              {isUpdated === false && <p>{oneArticle.title}</p>}{' '}
+              {isUpdated && (
+                <input
+                  defaultValue={oneArticle.title}
+                  onChange={(e) => setEditTitle(e.target.value)}
+                  type="text"
+                  placeholder="Ecrivez le titre ici"
+                />
+              )}
             </div>
             <div className="dashboard__content__create__article__editor">
               <label className="label" htmlFor="content">
                 Message
               </label>
-              <ReactQuill
-                value={content}
-                onChange={handleChange}
-                placeholder="Entrez votre message"
-                modules={modules}
-                ref={quillRef}
-              />
+              {isUpdated === false && (
+                <div
+                  className="update-textarea"
+                  readOnly
+                  dangerouslySetInnerHTML={{
+                    __html: DOMPurify.sanitize(oneArticle.content),
+                  }}
+                />
+              )}
+              {isUpdated && (
+                <ReactQuill
+                  defaultValue={oneArticle.content}
+                  readOnly={false}
+                  onChange={handleUpdate}
+                  placeholder="Entrez votre message"
+                  modules={modules}
+                  ref={quillRef}
+                />
+              )}
             </div>
             <div className="dashboard__content__create__article__submit">
-              <input type="submit" value="Publier" />
+              {isUpdated ? (
+                <>
+                  <input type="submit" value="Enregistrer" />
+                  <Link to="/admin/article" className="cancel-article">
+                    Annuler
+                  </Link>
+                </>
+              ) : (
+                <button
+                  className="edit__btn new__btn"
+                  type="button"
+                  onClick={() => setIsUpdated(!isUpdated)}
+                >
+                  Modifier
+                </button>
+              )}
             </div>
           </form>
         </div>
       </div>
       <div className="dashboard__content__create__article__file">
-        <label
-          className={
-            isUpload
-              ? 'dashboard__content__create__article__file__label fileUpload'
-              : 'dashboard__content__create__article__file__label'
-          }
-          htmlFor="file"
-        >
-          Ajouter une image
-        </label>
-        <div
-          className={
-            isUpload
-              ? 'dashboard__content__create__article__file__img isUpload'
-              : 'dashboard__content__create__article__file__img'
-          }
-        >
-          {isUpload ? (
+        <div className="dashboard__content__create__article__file__img isUpload">
+          {oneArticle.image != null ? (
             <img
-              src={imagePreview}
+              src={oneArticle.image}
               alt="article-pic illustration de l'article"
               className="file__img"
             />
@@ -186,4 +202,4 @@ const CreateArticle = () => {
   );
 };
 
-export default CreateArticle;
+export default UpdatedArticle;

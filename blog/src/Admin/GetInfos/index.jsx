@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-
+import DOMPurify, {sanitize} from 'isomorphic-dompurify';
 const GetInfos = () => {
   return (
     <div className="dashboard__content__container">
@@ -11,16 +11,16 @@ const GetInfos = () => {
             <table className="content-table">
               <thead>
                 <tr className="menu-item">
-                  <th className="menu-title">Noms</th>
-                  <th className="menu-title">Emails</th>
-                  <th className="menu-title">Contacts</th>
-                  <th className="menu-title">Messages</th>
-                  <th className="menu-title">Dates</th>
+                  <th>Noms</th>
+                  <th>Emails</th>
+                  <th>Contacts</th>
+                  <th>Messages</th>
+                  <th>Dates</th>
                 </tr>
               </thead>
               <tbody>
-                <tr className="active-tr">
-                  <td className="content-td">
+                <tr>
+                  <td>
                     <Link to="/infos/info">Oumar MAURET</Link>
                   </td>
                   <td className="content-td">
