@@ -20,7 +20,7 @@ export const readInfos = (id) => {
     return axios
       .get(`${process.env.REACT_APP_API_URL}api/infos/${id}`)
       .then((res) => {
-        dispatch({type: READ_INFOS, payload: {id}});
+        dispatch({type: READ_INFOS, payload: res.data});
       })
       .catch((err) => console.log(err));
   };

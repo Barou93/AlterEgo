@@ -1,11 +1,12 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {getArticles} from '../../actions/articles.action';
-import DOMPurify, {sanitize} from 'isomorphic-dompurify';
-import Pagination from '../../Components/Pagination';
-import {isEmpty} from '../../Components/Utils';
-import DeleteArticle from '../DeleteArticle';
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+import {getArticles} from "../../actions/articles.action";
+import DOMPurify, {sanitize} from "isomorphic-dompurify";
+import Pagination from "../../Components/Pagination";
+import {isEmpty} from "../../Components/Utils";
+import {dateFormater} from "../../Components/HumanReadableDateFormat";
+import DeleteArticle from "../DeleteArticle";
 
 const GetArticle = () => {
   const [articlePerPage] = useState(15);
@@ -38,7 +39,15 @@ const GetArticle = () => {
     <div className="dashboard__content__container">
       {loading && !isEmpty(currentArticles[0]) && (
         <div className="dashboard__content__container__inbox">
-          <h1>Tous les articles</h1>
+          <div className="dashboard__content__container__header">
+            <h1 className="dashboard__title">Tous les articles</h1>
+            <Link
+              to={"/admin/article/create"}
+              className="dashboard__content__insight__create add_article"
+            >
+              Créer un article
+            </Link>
+          </div>
           <div className="dashboard__content__container__inbox__container">
             <div className="dashboard__content__container__inbox__menu">
               <table>
@@ -66,7 +75,8 @@ const GetArticle = () => {
                                 }}
                               />
                             </td>
-                            <td>{article.createdAt}</td>
+                            <td>{dateFormater(article.createdAt)}</td>
+
                             <td className="btn-container">
                               <Link
                                 key={index}
@@ -94,7 +104,7 @@ const GetArticle = () => {
             currentPage={currentPage}
           />
         </div>
-      )}{' '}
+      )}{" "}
     </div>
   );
 };

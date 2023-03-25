@@ -32,3 +32,10 @@
   opacity: 0.89;
   margin-top: 20px;
 }
+
+.delete_user {
+  &:hover {
+    background: $deletebtn;
+    color: #fff;
+  }
+}

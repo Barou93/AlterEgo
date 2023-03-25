@@ -1,39 +1,51 @@
-import React from 'react';
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Link, useParams} from "react-router-dom";
+import {readInfos} from "../../actions/info.action";
+import {dateFormater} from "../../Components/HumanReadableDateFormat";
+import DeleteInfos from "../DeleteInfos";
 const ReadInfos = () => {
+  const [isLoad, setIsLoad] = useState(true);
+  const message = useSelector((state) => state.infoReducer);
+  const dispatch = useDispatch();
+
+  const {id: messageId} = useParams();
+  useEffect(() => {
+    if (isLoad) {
+      dispatch(readInfos(messageId));
+      //setIsLoad(false);
+    }
+  }, [dispatch, isLoad, messageId]);
+
   return (
     <div className="dashboard__content__container">
       <div className="dashboard__content__readinfos">
-        <h1>Message de Oumar MAURET</h1>
-        <div className="dashboard__content__readinfos__container">
-          <div className="dashboard__content__readinfos__userinfos">
-            <div className="dashboard__content__readinfos__userinfos__contact">
-              <p>Oumar MAURET</p>
-              <span>oumarmauret@test.com</span>
+        {isLoad && (
+          <>
+            <h1>Message de {message.name}</h1>
+            <div className="dashboard__content__readinfos__container">
+              <div className="dashboard__content__readinfos__userinfos">
+                <div className="dashboard__content__readinfos__userinfos__contact">
+                  <p>{message.name} </p>
+                  <span>{message.email}</span>
+                </div>
+                <div className="dashboard__content__readinfos__userinfos__date">
+                  {dateFormater(message.createdAt)}
+                </div>
+              </div>
+              <div className="dashboard__content__readinfos__message">
+                <p>{message.message}</p>
+              </div>
             </div>
-            <div className="dashboard__content__readinfos__userinfos__date">
-              dimanche le 12 Mars 2023 à 14h 20mins
+            <div className="dashboard__content__create__article__submit msg__btns">
+              <Link to="/admin/message" className="delete__article cancel">
+                Retour
+              </Link>
+
+              <DeleteInfos id={message.id} />
             </div>
-          </div>
-          <div className="dashboard__content__readinfos__message">
-            <p>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Blanditiis veniam, sint quas fuga ipsam labore aliquam esse,
-              praesentium sequi tenetur iure saepe dolorem quasi. Architecto
-              repellendus eaque quasi earum alias. Aperiam minima laboriosam
-              hic, molestias voluptas numquam quam quo consectetur ex mollitia
-              reiciendis, iusto praesentium beatae, quos quae. Labore nostrum
-              laboriosam molestias magnam voluptatem officia excepturi ipsa fuga
-              doloremque odio! Lorem ipsum dolor, sit amet consectetur
-              adipisicing elit. Excepturi laudantium aspernatur enim a quidem
-              quos asperiores, iusto adipisci tempore hic. Totam magni culpa
-              unde obcaecati velit eum iusto vel inventore. Fugit veritatis quo
-              officia atque ratione voluptatum tempora, optio exercitationem
-              harum rerum rem minus libero omnis consectetur repudiandae labore
-              corporis molestiae? Itaque, eos repellendus. Debitis cumque odio
-              ipsa animi amet?
-            </p>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </div>
   );

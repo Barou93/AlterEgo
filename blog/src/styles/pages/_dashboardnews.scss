@@ -1,14 +1,16 @@
-.dashboard__content__container__inbox {
-  h1 {
-    font-size: 20px;
-    color: $primarycolor;
-  }
-  &__menu {
+.dashboard__content__container {
+  &__header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
   }
+  &__inbox {
+    &__menu {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
 }
-
 table {
   border-collapse: collapse;
   font-family: Arial, sans-serif;
@@ -65,11 +67,6 @@ tr:hover {
 //Read one messages
 
 .dashboard__content__readinfos {
-  h1 {
-    font-size: 25px;
-    font-weight: bold;
-    padding: 25px 0;
-  }
   &__container {
     border: 1px solid lightgray;
     box-shadow: $boxShadow-2;
@@ -109,5 +106,27 @@ tr:hover {
       font-weight: 350;
       padding: 25px 0;
     }
+  }
+}
+
+.msg__btns {
+  margin-top: 25px;
+}
+
+.message_link {
+  &:hover {
+    text-decoration: underline;
+    font-weight: bold;
+    color: $primarycolor;
+  }
+}
+
+.cancel {
+  background: #ddd;
+  opacity: 0.89;
+  &:hover {
+    background: #ddd;
+    opacity: 1;
+    color: #000;
   }
 }

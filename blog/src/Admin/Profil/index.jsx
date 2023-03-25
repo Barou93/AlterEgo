@@ -1,29 +1,40 @@
-import React, {useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link} from 'react-router-dom';
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Link, useParams} from "react-router-dom";
+import {getAdmin, updateAdmin} from "../../actions/admin.action";
+import DeleteAdmin from "../DeleteAdmin";
 
 const Profil = () => {
-  const [editName, setEditName] = useState('');
+  const [editName, setEditName] = useState("");
   const [updateUsername, setUpdateUsername] = useState(false);
   const [loadUsername, setLoadUsername] = useState(true);
   const adminData = useSelector((state) => state.adminReducer);
   const dispatch = useDispatch();
-
+  const {id: adminId} = useParams();
   useEffect(() => {
     if (loadUsername) {
+      dispatch(getAdmin(adminId));
+    } else {
+      setLoadUsername(false);
     }
-  }, [loadUsername]);
+  }, [loadUsername, dispatch, adminId]);
 
-  const handleUpdateName = () => {
+  const handleUpdateName = async () => {
     if (editName) {
       const data = new FormData();
-      data.append('');
+      data.append("username", editName);
+      await dispatch(updateAdmin(adminData.id, data));
+      setUpdateUsername(false);
+      window.location = "/admin/dashboard";
+    } else {
+      console.log("Impossible de modifier votre nom réessayer svp!");
     }
   };
 
   return (
     <div className="dashboard__content__container">
       <div className="dashboard__content__profil">
+        <h1 className="dashboard__title">Modifier vos informations</h1>
         <div className="dashboard__content__profil__container">
           <form
             onSubmit={handleUpdateName}
@@ -77,8 +88,14 @@ const Profil = () => {
                 </button>
               )}
               {updateUsername ? (
-                <Link className="cancel__btn">Annuler</Link>
+                <Link
+                  onClick={() => setUpdateUsername(!updateUsername)}
+                  className="cancel__btn"
+                >
+                  Annuler
+                </Link>
               ) : null}
+              <DeleteAdmin id={adminData.id} />
             </div>
           </form>
         </div>

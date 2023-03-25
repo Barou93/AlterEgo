@@ -7,6 +7,7 @@ const DeleteArticle = (props) => {
   const deletePost = () => {
     dispatch(deleteArticle(props.id));
   };
+
   return (
     <button
       onClick={() => {

@@ -23,6 +23,7 @@ export const readArticle = (id) => {
       .then((res) => {
         dispatch({type: READ_ARTICLE, payload: res.data});
       })
+
       .catch((err) => console.log(err));
   };
 };

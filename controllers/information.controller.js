@@ -27,26 +27,15 @@ module.exports.createInfos = async (req, res) => {
 };
 
 module.exports.getInfos = async (req, res) => {
-  //const token = jwt.verify(req.cookies.jwt, process.env.TOKEN_SECRET);
-  const token = jwt.verify(req.cookies.jwt, process.env.TOKEN_SECRET);
-  const admin = token.id;
-  //console.log(admin);
-
   try {
-    const adminId = await Admin.findByPk(admin);
-    if (!adminId)
-      return res
-        .status(401)
-        .json('Désolé seuls les administrateurs sont autorisés');
-    if (adminId) {
-      const allInfos = await Information.findAll({
-        order: [['createdAt', 'DESC']],
-      });
-      if (allInfos) {
-        return res.status(200).json(allInfos);
-      } else {
-        return res.status(404).json('Aucune demande disponible');
-      }
+    //'Désolé seuls les administrateurs sont autorisés';
+    const allInfos = await Information.findAll({
+      order: [['createdAt', 'DESC']],
+    });
+    if (allInfos) {
+      return res.status(200).json(allInfos);
+    } else {
+      return res.status(404).json('Aucune demande disponible');
     }
   } catch (error) {
     return res.status(500).json(error.message);
@@ -54,23 +43,14 @@ module.exports.getInfos = async (req, res) => {
 };
 
 module.exports.readInfos = async (req, res) => {
-  const token = jwt.verify(req.cookies.jwt, process.env.TOKEN_SECRET);
-  const adminId = await Admin.findByPk(token.id);
   try {
-    if (adminId) {
-      const {id} = req.params;
+    const {id} = req.params;
+    const getInfos = await Information.findByPk(id);
 
-      const getInfos = await Information.findByPk(id);
-
-      if (getInfos) {
-        return res.status(200).json(getInfos);
-      } else {
-        return res.status(404).json("Cette information n'est plus disponible");
-      }
+    if (getInfos) {
+      return res.status(200).json(getInfos);
     } else {
-      return res
-        .status(403)
-        .json('Désolé seuls les administrateurs sont autorisés ');
+      return res.status(404).json("Cette information n'est plus disponible");
     }
   } catch (error) {
     return res.status(500).json(error);
@@ -79,9 +59,9 @@ module.exports.readInfos = async (req, res) => {
 
 module.exports.deleteInfos = async (req, res) => {
   const {id} = req.params;
-  const token = jwt.verify(req.cookies.jwt, process.env.TOKEN_SECRET);
+  //const token = jwt.verify(req.cookies.jwt, process.env.TOKEN_SECRET);
   try {
-    const adminId = await Admin.findByPk(token.id);
+    // const adminId = await Admin.findByPk(token.id);
     const infos = await Information.findOne({where: {id}});
 
     await Information.destroy({where: {id: infos.id}})

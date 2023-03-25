@@ -1,11 +1,38 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import DOMPurify, {sanitize} from 'isomorphic-dompurify';
+import React, {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
+import DOMPurify, {sanitize} from "isomorphic-dompurify";
+import {useDispatch, useSelector} from "react-redux";
+import {getInfos} from "../../actions/infos.action";
+import {isEmpty} from "../../Components/Utils";
+import {dateFormater} from "../../Components/HumanReadableDateFormat";
+import DeleteInfos from "../DeleteInfos";
+import Pagination from "../../Components/Pagination";
 const GetInfos = () => {
+  const [messagePerPage] = useState(15);
+  const [currentPage, setCurrentPage] = useState(1);
+  const messages = useSelector((state) => state.infosReducer);
+  const [allMessages, setAllMessages] = useState([]);
+
+  const [loadMessage, setLoadMessage] = useState(true);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (loadMessage) {
+      dispatch(getInfos());
+      setAllMessages(messages);
+    }
+  }, [dispatch, messages, loadMessage]);
+
+  const paginate = (page) => {
+    setCurrentPage(page);
+  };
+
+  const lastPage = currentPage * messagePerPage;
+  const firstPage = lastPage - messagePerPage;
+  const currentMessages = Object.values(allMessages).slice(firstPage, lastPage);
   return (
     <div className="dashboard__content__container">
       <div className="dashboard__content__container__inbox">
-        <h1>Boite de reception</h1>
+        <h1 className="dashboard__title">Boite de reception</h1>
         <div className="dashboard__content__container__inbox__container">
           <div className="dashboard__content__container__inbox__menu">
             <table className="content-table">
@@ -14,435 +41,46 @@ const GetInfos = () => {
                   <th>Noms</th>
                   <th>Emails</th>
                   <th>Contacts</th>
-                  <th>Messages</th>
                   <th>Dates</th>
+                  <th>Consulter</th>
+                  <th>Supprimer</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>
-                    <Link to="/infos/info">Oumar MAURET</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">oumarmauret@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">71246578</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Helene Cissokho</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">cissokhohelene@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">75475641</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Saran Sidibe</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">sidibesaran@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">89423541</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Oumar MAURET</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">oumarmauret@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">71246578</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Helene Cissokho</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">cissokhohelene@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">75475641</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Saran Sidibe</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">sidibesaran@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">89423541</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Oumar MAURET</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">oumarmauret@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">71246578</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Helene Cissokho</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">cissokhohelene@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">75475641</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Saran Sidibe</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">sidibesaran@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">89423541</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Oumar MAURET</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">oumarmauret@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">71246578</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Helene Cissokho</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">cissokhohelene@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">75475641</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Saran Sidibe</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">sidibesaran@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">89423541</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Oumar MAURET</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">oumarmauret@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">71246578</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Helene Cissokho</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">cissokhohelene@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">75475641</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Saran Sidibe</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">sidibesaran@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">89423541</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Oumar MAURET</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">oumarmauret@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">71246578</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Helene Cissokho</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">cissokhohelene@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">75475641</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Saran Sidibe</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">sidibesaran@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">89423541</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Oumar MAURET</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">oumarmauret@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">71246578</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Helene Cissokho</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">cissokhohelene@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">75475641</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="content-td">
-                    <Link to="/infos/info">Saran Sidibe</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">sidibesaran@test.com</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">89423541</Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">
-                      Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                      Dolor totam aspernatur...
-                    </Link>
-                  </td>
-                  <td className="content-td">
-                    <Link to="/infos/info">12 Mars 2023</Link>
-                  </td>
-                </tr>
+                {!isEmpty(currentMessages[0]) &&
+                  currentMessages.map((message, index) => {
+                    return (
+                      <>
+                        <tr key={index}>
+                          <td>{message.name}</td>
+                          <td>{message.email}</td>
+                          <td>{message.phone}</td>
+                          <td>{dateFormater(message.createdAt)}</td>
+                          <td>
+                            <Link
+                              className="message_link"
+                              to={`/admin/message/${message.id}`}
+                            >
+                              Lire le message
+                            </Link>
+                          </td>
+                          <td className="btn-container">
+                            <DeleteInfos id={message.id} />
+                          </td>
+                        </tr>
+                      </>
+                    );
+                  })}
               </tbody>
             </table>
           </div>
         </div>
+        <Pagination
+          totalArticles={allMessages.length}
+          articlePerPage={messagePerPage}
+          paginate={setCurrentPage}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );
