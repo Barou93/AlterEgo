@@ -1,59 +1,99 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Footer from "../../Components/Footer/Index";
 import Header from "../../Components/Header";
-import BlogImg from "../../styles/assets/img/user-experience.png";
+import {getArticles} from "../../actions/articles.action";
+import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import Pagination from "../../Components/Pagination";
+import {isEmpty} from "../../Components/Utils";
+import {dateFormater} from "../../Components/HumanReadableDateFormat";
+import DOMPurify from "dompurify";
 
 const Blog = () => {
-   return (
-      <>
-         <Header />
-         <main className="container">
-            <div className="blog">
-               <div className="blog__container">
-                  <article className="blog__resume">
-                     <a href="/blogcontent" className="blog__resume__img">
-                        <img
-                           src={BlogImg}
-                           alt="contenu de l'article du blog "
-                        />
-                     </a>
-                     <div className="blog__resume__text">
-                        <h2 className="blog__resume__text__insight">
-                           <a href="/blogcontent">Expérience client</a>
-                        </h2>
-                        <div className="blog__resume__text__infos">
-                           <p>12 Février 2023</p>
-                           <span>Oumar MAURET</span>
-                        </div>
+  const [articlePerPage] = useState(10);
+  const [currentPage, setCurrentPage] = useState(1);
+  const articles = useSelector((state) => state.articlesReducer);
+  const [allPost, setAllPost] = useState([]);
+  const admins = useSelector((state) => state.adminsReducer);
+  const [isLoad, setIsload] = useState(true);
+  const dispatch = useDispatch();
 
-                        <div className="blog__resume__text__details">
-                           <h3>
-                              Lorem ipsum dolor sit amet, consectetur
-                              adipisicing elit. Vero accusantium sunt debitis
-                              dignissimos incidunt libero quis quidem, explicabo
-                              laboriosam deserunt, quam repudiandae tempora eum
-                              reiciendis aspernatur sed iste quaerat
-                              consequuntur. Lorem ipsum dolor sit amet,
-                              consectetur adipisicing elit. Vero accusantium
-                              sunt debitis dignissimos incidunt libero quis
-                              quidem, explicabo laboriosam deserunt, quam
-                              repudiandae tempora eum reiciendis aspernatur sed
-                              iste quaerat consequuntur. Lorem ipsum dolor sit
-                              amet, consectetur adipisicing elit. Vero
-                              accusantium sunt debitis dignissimos incidunt
-                              libero quis quidem, explicabo laboriosam deserunt,
-                              quam repudiandae tempora eum reiciendis aspernatur
-                              sed iste quaerat consequuntur.
-                           </h3>
-                        </div>
-                     </div>
+  useEffect(() => {
+    if (isLoad) {
+      dispatch(getArticles());
+      setAllPost(articles);
+    }
+  }, [isLoad, dispatch, articles]);
+
+  const lastPageIndex = currentPage * articlePerPage;
+  const firstPageIndex = lastPageIndex - articlePerPage;
+  const currentPost = Object.values(allPost).slice(
+    firstPageIndex,
+    lastPageIndex
+  );
+
+  const paginate = (page) => {
+    setCurrentPage(page);
+  };
+
+  return (
+    <>
+      <Header />
+      <main className="container">
+        <div className="blog">
+          <div className="blog__container">
+            {!isEmpty(currentPost[0]) &&
+              currentPost.map((post, index) => {
+                return (
+                  <article key={index} className="blog__resume">
+                    <Link to={`/blog/${post.id}`} className="blog__resume__img">
+                      {post.image !== null ? (
+                        <img
+                          src={post.image}
+                          alt="contenu de l'article du blog "
+                        />
+                      ) : null}
+                    </Link>
+                    <div className="blog__resume__text">
+                      <h2 className="blog__resume__text__insight">
+                        <Link className="insight__link" to={`/blog/${post.id}`}>
+                          {post.title}
+                        </Link>
+                      </h2>
+                      <div className="blog__resume__text__infos">
+                        <p>{dateFormater(post.createdAt)} </p>
+                        {!isEmpty(admins[0]) &&
+                          admins.map((admin) => {
+                            if (admin.id === post.adminId)
+                              return <span>{admin.username}</span>;
+                            return null;
+                          })}
+                      </div>
+
+                      <div className="blog__resume__text__details">
+                        <div
+                          className="content"
+                          dangerouslySetInnerHTML={{
+                            __html: DOMPurify.sanitize(post.content),
+                          }}
+                        />
+                      </div>
+                    </div>
                   </article>
-               </div>
-            </div>
-         </main>
-         <Footer />
-      </>
-   );
+                );
+              })}
+          </div>
+          <Pagination
+            totalArticles={allPost.length}
+            articlePerPage={articlePerPage}
+            paginate={paginate}
+            currentPage={currentPage}
+          />
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
 };
 
 export default Blog;

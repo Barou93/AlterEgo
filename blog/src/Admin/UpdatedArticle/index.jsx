@@ -1,18 +1,18 @@
-import DOMPurify from 'dompurify';
-import React, {useRef, useState, useEffect, useMemo} from 'react';
-import ReactQuill from 'react-quill';
+import DOMPurify from "dompurify";
+import React, {useRef, useState, useEffect, useMemo} from "react";
+import ReactQuill from "react-quill";
 //import Quill from 'quill';
-import 'react-quill/dist/quill.snow.css';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link, useParams} from 'react-router-dom';
-import {readArticle, updateArticle} from '../../actions/article.action';
-import {getArticles} from '../../actions/articles.action';
+import "react-quill/dist/quill.snow.css";
+import {useDispatch, useSelector} from "react-redux";
+import {Link, useParams} from "react-router-dom";
+import {readArticle, updateArticle} from "../../actions/article.action";
+import {getArticles} from "../../actions/articles.action";
 
 const UpdatedArticle = () => {
-  const [updateContent, setUpdateContent] = useState('');
+  const [updateContent, setUpdateContent] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
   const [isLoad, setIsLoad] = useState(true);
-  const [editTitle, setEditTitle] = useState('');
+  const [editTitle, setEditTitle] = useState("");
   const [updateFile, setUpdateFile] = useState();
   const [isUpload, setisUpload] = useState(false);
   const [imagePreview, setImagePreview] = useState();
@@ -43,45 +43,45 @@ const UpdatedArticle = () => {
       toolbar: {
         container: [
           [{header: [1, 2, 3, 4, 5, 6, false]}],
-          ['bold', 'italic', 'underline', 'strike'],
+          ["bold", "italic", "underline", "strike"],
           [
             {
               color: [
-                '#000000',
-                '#e60000',
-                '#ff9900',
-                '#ffff00',
-                '#008a00',
-                '#0066cc',
-                '#9933ff',
-                '#ffffff',
-                '#facccc',
-                '#ffebcc',
-                '#ffffcc',
-                '#cce8cc',
-                '#cce0f5',
-                '#ebd6ff',
-                '#bbbbbb',
-                '#f06666',
-                '#ffc266',
-                '#ffff66',
-                '#66b966',
-                '#66a3e0',
-                '#c285ff',
-                '#888888',
-                '#a10000',
-                '#b26b00',
-                '#b2b200',
-                '#006100',
-                '#0047b2',
-                '#6b24b2',
-                '#444444',
-                '#5c0000',
-                '#663d00',
-                '#666600',
-                '#003700',
-                '#002966',
-                '#3d1466',
+                "#000000",
+                "#e60000",
+                "#ff9900",
+                "#ffff00",
+                "#008a00",
+                "#0066cc",
+                "#9933ff",
+                "#ffffff",
+                "#facccc",
+                "#ffebcc",
+                "#ffffcc",
+                "#cce8cc",
+                "#cce0f5",
+                "#ebd6ff",
+                "#bbbbbb",
+                "#f06666",
+                "#ffc266",
+                "#ffff66",
+                "#66b966",
+                "#66a3e0",
+                "#c285ff",
+                "#888888",
+                "#a10000",
+                "#b26b00",
+                "#b2b200",
+                "#006100",
+                "#0047b2",
+                "#6b24b2",
+                "#444444",
+                "#5c0000",
+                "#663d00",
+                "#666600",
+                "#003700",
+                "#002966",
+                "#3d1466",
               ],
             },
           ],
@@ -94,21 +94,21 @@ const UpdatedArticle = () => {
   const handleEditPost = async () => {
     if (editTitle || updateContent) {
       const data = new FormData();
-      if (editTitle) data.append('title', editTitle);
-      if (updateContent) data.append('content', updateContent);
+      if (editTitle) data.append("title", editTitle);
+      if (updateContent) data.append("content", updateContent);
       await dispatch(updateArticle(articleId, data));
       setIsUpdated(false);
       //cancelPost();
-      window.location = '/admin/article';
+      window.location = "/admin/article";
     } else {
-      console.log('Veuillez entrer un message');
+      console.log("Veuillez entrer un message");
     }
   };
 
   const cancelPost = () => {
-    setUpdateFile('');
-    setEditTitle('');
-    setUpdateContent('');
+    setUpdateFile("");
+    setEditTitle("");
+    setUpdateContent("");
   };
   return (
     <div className="dashboard__content__container">
@@ -125,7 +125,7 @@ const UpdatedArticle = () => {
               <label className="label" htmlFor="title">
                 Titre de l'article
               </label>
-              {isUpdated === false && <p>{oneArticle.title}</p>}{' '}
+              {isUpdated === false && <p>{oneArticle.title}</p>}{" "}
               {isUpdated && (
                 <input
                   defaultValue={oneArticle.title}

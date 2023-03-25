@@ -1,6 +1,5 @@
 .container {
   background: #f1f2f1;
-  height: 100vh;
   font-family: $secondaryfont;
 }
 
@@ -49,26 +48,14 @@
       &__details {
         font-size: 15px;
         width: 80%;
-
-        h3 {
-          overflow: hidden;
-          padding-right: 16px;
-          line-height: 24px;
-          max-height: calc(24px * 3);
-          font-size: 20px;
-          width: 600px;
-          position: relative;
-          text-align: justify;
-          //white-space: nowrap;
-          //background: #000;
-          &::after {
-            content: '...';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-          }
-        }
       }
+    }
+  }
+
+  .insight__link {
+    &:hover {
+      color: $primarycolor;
+      text-decoration: underline;
     }
   }
 
