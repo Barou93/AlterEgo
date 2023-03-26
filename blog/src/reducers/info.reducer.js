@@ -1,4 +1,4 @@
-import {DELETE_INFOS, READ_INFOS} from '../actions/info.action';
+import {DELETE_INFOS, READ_INFOS} from "../actions/info.action";
 
 const initialState = {};
 

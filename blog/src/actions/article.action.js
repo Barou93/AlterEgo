@@ -1,14 +1,14 @@
-import axios from 'axios';
+import axios from "axios";
 
-export const CREATE_ARTICLE = 'CREATE_ARTICLE';
-export const READ_ARTICLE = 'READ_ARTICLE';
-export const UPDATE_ARTICLE = 'UPDATE_ARTICLE';
-export const DELETE_ARTICLE = 'DELETE_ARTICLE';
+export const CREATE_ARTICLE = "CREATE_ARTICLE";
+export const READ_ARTICLE = "READ_ARTICLE";
+export const UPDATE_ARTICLE = "UPDATE_ARTICLE";
+export const DELETE_ARTICLE = "DELETE_ARTICLE";
 
 export const createArticle = (data) => {
   return (dispatch) => {
     return axios({
-      method: 'post',
+      method: "post",
       url: `${process.env.REACT_APP_API_URL}api/article/new`,
       data,
       withCredentials: true,
@@ -31,7 +31,7 @@ export const readArticle = (id) => {
 export const updateArticle = (id, data) => {
   return (dispatch) => {
     return axios({
-      method: 'put',
+      method: "put",
       url: `${process.env.REACT_APP_API_URL}api/article/${id}`,
       data,
       withCredentials: true,
@@ -46,7 +46,7 @@ export const updateArticle = (id, data) => {
 export const deleteArticle = (id) => {
   return (dispatch) => {
     return axios({
-      method: 'delete',
+      method: "delete",
       url: `${process.env.REACT_APP_API_URL}api/article/${id}`,
       withCredentials: true,
     })

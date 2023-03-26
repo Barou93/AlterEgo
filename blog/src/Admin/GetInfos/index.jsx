@@ -20,7 +20,7 @@ const GetInfos = () => {
       dispatch(getInfos());
       setAllMessages(messages);
     }
-  }, [dispatch, messages, loadMessage]);
+  }, [messages, loadMessage, dispatch]);
 
   const paginate = (page) => {
     setCurrentPage(page);
@@ -78,7 +78,7 @@ const GetInfos = () => {
         <Pagination
           totalArticles={allMessages.length}
           articlePerPage={messagePerPage}
-          paginate={setCurrentPage}
+          paginate={paginate}
           currentPage={currentPage}
         />
       </div>

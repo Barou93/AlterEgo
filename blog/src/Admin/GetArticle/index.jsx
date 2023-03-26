@@ -100,7 +100,7 @@ const GetArticle = () => {
           <Pagination
             totalArticles={allArticles.length}
             articlePerPage={articlePerPage}
-            paginate={setCurrentPage}
+            paginate={paginate}
             currentPage={currentPage}
           />
         </div>

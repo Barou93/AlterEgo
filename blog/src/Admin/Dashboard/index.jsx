@@ -18,8 +18,6 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   const [allNews, setAllNews] = useState([]);
-  const [articleLoading] = useState(1);
-  //const [currentPage, setCurrentPage] = useState(1);
 
   const articles = useSelector((state) => state.articlesReducer);
   const messages = useSelector((state) => state.infosReducer);
@@ -32,7 +30,7 @@ const Dashboard = () => {
   }, [dispatch, articles, loading]);
 
   //console.log(allNews.length);
-  const currentArticles = Object.values(allNews).slice(articleLoading);
+  const currentArticles = Object.values(allNews).slice(0, 3);
   //console.log(currentArticles);
 
   return (

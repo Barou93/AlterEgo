@@ -1,60 +1,59 @@
 //Partie Qui sommes-nous
 .aside {
-   margin: 50px 0;
-   &__hgroup {
-      text-align: center;
-      &__title {
-         font-size: 45px;
-         font-weight: bold;
-         color: $primarycolor;
-         margin-bottom: 15px;
-         @include mobile-first {
-            font-size: 25px;
-         }
-
-         @include tablette {
-            font-size: 30px;
-         }
+  margin: 50px 0;
+  &__hgroup {
+    text-align: center;
+    &__title {
+      font-size: 45px;
+      font-weight: bold;
+      color: $primarycolor;
+      margin-bottom: 15px;
+      @include tablette {
+        font-size: 30px;
       }
-      &__details {
-         font-size: 18px;
-         font-family: $secondaryfont;
-         @include mobile-first {
-            font-size: 15px;
-         }
+      @include mobile-first {
+        font-size: 25px;
       }
-   }
-   &__infos {
-      padding: 10px 25px;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
+    }
+    &__details {
+      font-size: 18px;
       font-family: $secondaryfont;
       @include mobile-first {
-         flex-direction: column-reverse;
+        font-size: 15px;
       }
-      p {
-         font-size: 20px;
-         @include mobile-first {
-            text-align: center;
-            margin-top: 25px;
-         }
-      }
-      &__strong {
-         color: $secondarycolor;
-         font-weight: bold;
-      }
-      &__img {
-         width: 250px;
-         height: 250px;
-      }
-   }
-
-   .reverse {
-      display: flex;
-      flex-direction: row-reverse;
+    }
+  }
+  &__infos {
+    padding: 10px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-family: $secondaryfont;
+    @include mobile-first {
+      flex-direction: column-reverse;
+    }
+    p {
+      font-size: 20px;
       @include mobile-first {
-         flex-direction: column-reverse;
+        text-align: center;
+        margin-top: 25px;
       }
-   }
+    }
+    &__strong {
+      color: $secondarycolor;
+      font-weight: bold;
+    }
+    &__img {
+      width: 250px;
+      height: 250px;
+    }
+  }
+
+  .reverse {
+    display: flex;
+    flex-direction: row-reverse;
+    @include mobile-first {
+      flex-direction: column-reverse;
+    }
+  }
 }

@@ -1,8 +1,8 @@
-const models = require('../models');
+const models = require("../models");
 const {Admin, Article} = models;
-const jwt = require('jsonwebtoken');
-const fs = require('fs');
-const sharp = require('sharp');
+const jwt = require("jsonwebtoken");
+const fs = require("fs");
+const sharp = require("sharp");
 /**
  *
  * @param {Sring} req
@@ -29,10 +29,10 @@ module.exports.createArticle = async (req, res) => {
     //let articleItem;
 
     await sharp(file.path)
-      .resize(600, 488, {fit: 'cover'})
+      .resize(600, 488, {fit: "cover"})
       .jpeg({
         quality: 100,
-        chromaSubsampling: '4:4:4',
+        chromaSubsampling: "4:4:4",
       })
       .toFile(articleImg);
     fs.unlinkSync(file.path);
@@ -44,7 +44,7 @@ module.exports.createArticle = async (req, res) => {
           adminId: isAdmin.id,
           title,
           content,
-          image: `${req.protocol}://${req.get('host')}/` + imgUrl,
+          image: `${req.protocol}://${req.get("host")}/` + imgUrl,
         }
       : {
           adminId: isAdmin.id,
@@ -68,7 +68,7 @@ module.exports.createArticle = async (req, res) => {
             `Votre article ${newArticle.title} a été ajouter avec succes:  `
           );
       } else {
-        return res.status(400).json('Impossible de mettre à jour ce contenu');
+        return res.status(400).json("Impossible de mettre à jour ce contenu");
       }
     } else {
       return res.status(404).json("Cet article n'est plus disponible");
@@ -79,12 +79,12 @@ module.exports.createArticle = async (req, res) => {
 };
 module.exports.getArticles = async (req, res) => {
   const articles = await Article.findAll({
-    order: [['createdAt', 'DESC']],
+    order: [["createdAt", "DESC"]],
   });
   if (articles) {
     return res.status(200).json(articles);
   } else {
-    return res.send('Aucun articles disponible sur ce blog');
+    return res.send("Aucun articles disponible sur ce blog");
   }
 };
 module.exports.getArticle = async (req, res) => {
@@ -122,7 +122,7 @@ module.exports.updateArticle = async (req, res) => {
             `La modification de l'article ${updateArticle.title} effectuée avec succès `
           );
       } else {
-        return res.status(400).json('Impossible de mettre à jour ce contenu');
+        return res.status(400).json("Impossible de mettre à jour ce contenu");
       }
     } else {
       return res.status(404).json("Cet article n'est plus disponible");
@@ -137,19 +137,30 @@ module.exports.deleteArticle = async (req, res) => {
   try {
     const admin = await Admin.findByPk(token.id);
     const article = await Article.findOne({where: {id}});
-    const filename = article.image.split('./uploads')[1];
-    if (!admin)
-      return res
-        .status(401)
-        .json("Vous n'êtes pas autorisé à faire cette action");
-    fs.unlink(`./uploads/${filename}`, () => {
-      const result = Article.destroy({where: {id: article.id}});
-      if (!result) {
-        return res.status(404).json("Cet article n'est plus disponible");
+
+    if (article) {
+      if (article.image) {
+        const filename = article.image.split("./uploads")[1];
+        if (!admin)
+          return res
+            .status(401)
+            .json("Vous n'êtes pas autorisé à faire cette action");
+        fs.unlink(`./uploads/${filename}`, () => {
+          const result = Article.destroy({where: {id: article.id}});
+          if (!result) {
+            return res.status(404).json("Cet article n'est plus disponible");
+          }
+          return res.status(200).json("Contenu supprimer avec succès");
+        });
+      } else {
+        await Article.destroy({where: {id: article.id}}).then((result) => {
+          return res
+            .status(200)
+            .json("Votre article a été supprimer avec succès");
+        });
       }
-      return res.status(200).json('Suppression effectuée avec succès');
-    });
+    }
   } catch (error) {
-    return res.status(500).json(error);
+    return res.status(500).json(error.message);
   }
 };
