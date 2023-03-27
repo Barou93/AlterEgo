@@ -7,19 +7,20 @@ import {isEmpty} from "../../Components/Utils";
 import {dateFormater} from "../../Components/HumanReadableDateFormat";
 import DeleteInfos from "../DeleteInfos";
 import Pagination from "../../Components/Pagination";
+import LoaderData from "../../Components/LoaderData";
 const GetInfos = () => {
   const [messagePerPage] = useState(15);
   const [currentPage, setCurrentPage] = useState(1);
   const messages = useSelector((state) => state.infosReducer);
   const [allMessages, setAllMessages] = useState([]);
 
-  const [loadMessage, setLoadMessage] = useState(true);
+  const [loadMessage, setLoadMessage] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (loadMessage) {
+    
       dispatch(getInfos());
       setAllMessages(messages);
-    }
+    setLoadMessage(true);
   }, [messages, loadMessage, dispatch]);
 
   const paginate = (page) => {
@@ -31,7 +32,9 @@ const GetInfos = () => {
   const currentMessages = Object.values(allMessages).slice(firstPage, lastPage);
   return (
     <div className="dashboard__content__container">
-      <div className="dashboard__content__container__inbox">
+      {loadMessage?loadMessage :<LoaderData/>}
+      {loadMessage && !isEmpty(currentMessages[0]) && (
+         <div className="dashboard__content__container__inbox">
         <h1 className="dashboard__title">Boite de reception</h1>
         <div className="dashboard__content__container__inbox__container">
           <div className="dashboard__content__container__inbox__menu">
@@ -48,10 +51,10 @@ const GetInfos = () => {
               </thead>
               <tbody>
                 {!isEmpty(currentMessages[0]) &&
-                  currentMessages.map((message, index) => {
+                  currentMessages.map((message) => {
                     return (
                       <>
-                        <tr key={index}>
+                        <tr key={message.id}>
                           <td>{message.name}</td>
                           <td>{message.email}</td>
                           <td>{message.phone}</td>
@@ -82,6 +85,7 @@ const GetInfos = () => {
           currentPage={currentPage}
         />
       </div>
+     )}
     </div>
   );
 };

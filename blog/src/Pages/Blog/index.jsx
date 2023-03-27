@@ -8,6 +8,7 @@ import Pagination from "../../Components/Pagination";
 import {isEmpty} from "../../Components/Utils";
 import {dateFormater} from "../../Components/HumanReadableDateFormat";
 import DOMPurify from "dompurify";
+import LoaderData from "../../Components/LoaderData";
 
 const Blog = () => {
   const [articlePerPage] = useState(10);
@@ -15,14 +16,13 @@ const Blog = () => {
   const articles = useSelector((state) => state.articlesReducer);
   const [allPost, setAllPost] = useState([]);
   const admins = useSelector((state) => state.adminsReducer);
-  const [isLoad, setIsload] = useState(true);
+  const [isLoad, setIsload] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLoad) {
-      dispatch(getArticles());
-      setAllPost(articles);
-    }
+    dispatch(getArticles());
+    setAllPost(articles);
+    setIsload(true);
   }, [isLoad, dispatch, articles]);
 
   const lastPageIndex = currentPage * articlePerPage;
@@ -40,7 +40,9 @@ const Blog = () => {
     <>
       <Header />
       <main className="container">
-        <div className="blog">
+        {isLoad?isLoad : <LoaderData />}
+        {isLoad && !isEmpty(currentPost[0]) && (
+             <div className="blog">
           <div className="blog__container">
             {!isEmpty(currentPost[0]) &&
               currentPost.map((post, index) => {
@@ -90,6 +92,7 @@ const Blog = () => {
             currentPage={currentPage}
           />
         </div>
+        )}
       </main>
       <Footer />
     </>

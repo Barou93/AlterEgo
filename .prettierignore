@@ -1,1 +1,5 @@
 server.js
+/blog/src/Admin/GetArticle/index.jsx
+/blog/src/Admin/GetInfos/index.jsx
+/blog/src/Admin/Dashboard/index.jsx
+/blog/src/Pages/Blog/index.jsx

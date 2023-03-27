@@ -1,10 +1,10 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from "react";
 
-import {Outlet, Link, Navigate} from 'react-router-dom';
-import {SidebarData} from './SidebarData';
-import AdminHeader from './AdminHeader';
-import {UidContext} from './AppContext';
-import Login from '../Admin/Login';
+import {Outlet, Link, Navigate, NavLink} from "react-router-dom";
+import {SidebarData} from "./SidebarData";
+import AdminHeader from "./AdminHeader";
+import {UidContext} from "./AppContext";
+import Login from "../Admin/Login";
 
 const Sidebar = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -33,9 +33,11 @@ const Sidebar = () => {
                         className="dashboard__menu__container__links"
                         key={index}
                       >
-                        <Link
-                          className="dashboard__menu__container__links"
-                          to={item.path || '#'}
+                        <NavLink
+                          className={({isActive}) =>
+                            isActive ? "nav__links active-link" : "nav__links"
+                          }
+                          to={item.path || "#"}
                         >
                           <img
                             src={item.icon}
@@ -43,7 +45,7 @@ const Sidebar = () => {
                             alt="icons menu dashboard"
                           />
                           <p>{item.title}</p>
-                        </Link>
+                        </NavLink>
                       </li>
                     );
                   })}

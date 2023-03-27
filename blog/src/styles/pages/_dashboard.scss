@@ -14,9 +14,8 @@
     height: 100vh;
     background: $primarycolor;
     &__links {
-      padding: 18px 12px;
-      display: flex;
-      align-items: center;
+      padding: 0;
+
       font-family: $secondaryfont;
       cursor: pointer;
       &:hover {
@@ -198,4 +197,13 @@
   &::after {
     content: "" !important;
   }
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  padding: 22px 12px;
+}
+.active-link {
+  background: $secondarycolor;
 }

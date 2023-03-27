@@ -10,23 +10,24 @@ import {isEmpty} from "../../Components/Utils";
 import {dateFormater} from "../../Components/HumanReadableDateFormat";
 import DOMPurify from "dompurify";
 import {getArticles} from "../../actions/articles.action";
+import LoaderData from "../../Components/LoaderData";
 
 const Dashboard = () => {
   const uid = useContext(UidContext);
   const adminData = useSelector((state) => state.adminReducer);
   const adminsData = useSelector((state) => state.adminsReducer);
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [allNews, setAllNews] = useState([]);
 
   const articles = useSelector((state) => state.articlesReducer);
   const messages = useSelector((state) => state.infosReducer);
 
   useEffect(() => {
-    if (loading) {
+    
       dispatch(getArticles());
       setAllNews(articles);
-    }
+    setLoading(true);
   }, [dispatch, articles, loading]);
 
   //console.log(allNews.length);
@@ -35,7 +36,10 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard__content__container">
-      <div className="dashboard__content__main">
+      {loading?loading :<LoaderData />}
+      {loading && !isEmpty(currentArticles[0]) && (
+        <>
+          <div className="dashboard__content__main">
         <div className="dashboard__content__article">
           <div className="dashboard__content__insight">
             <h1 className="dashboard__content__insight__title">
@@ -55,10 +59,10 @@ const Dashboard = () => {
         <div className="dashboard__content__recentarticles">
           <h2>Derniers articles</h2>
           {!isEmpty(currentArticles[0]) &&
-            currentArticles.map((article, index) => {
+            currentArticles.map((article) => {
               return (
                 <div
-                  key={index}
+                  key={article.id}
                   className="dashboard__content__recentarticles__container"
                 >
                   <div className="dashboard__content__recentarticles__img">
@@ -126,6 +130,8 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+        </>
+      )}
     </div>
   );
 };

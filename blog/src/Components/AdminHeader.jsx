@@ -1,8 +1,8 @@
-import React, {useContext} from 'react';
-import Logo from '.././styles/assets/icons/logo_white_alter_ego.svg';
-import {Link} from 'react-router-dom';
-import {useSelector} from 'react-redux';
-import Logout from '../Admin/Logout';
+import React, {useContext} from "react";
+import Logo from ".././styles/assets/icons/logo_white_alter_ego.svg";
+import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+import Logout from "../Admin/Logout";
 
 const AdminHeader = () => {
   const adminData = useSelector((state) => state.adminReducer);
@@ -15,10 +15,7 @@ const AdminHeader = () => {
         </Link>
       </div>
       <div className="dashboard__header__menu">
-        <Link
-          className="dashboard__header__menu__link"
-          to={`/admin/profil/${adminData.id}`}
-        >
+        <Link className="dashboard__header__menu__link" to={`/admin/profil/`}>
           {adminData.username}
         </Link>
         <Logout />

@@ -7,6 +7,7 @@ import Pagination from "../../Components/Pagination";
 import {isEmpty} from "../../Components/Utils";
 import {dateFormater} from "../../Components/HumanReadableDateFormat";
 import DeleteArticle from "../DeleteArticle";
+import LoaderData from "../../Components/LoaderData";
 
 const GetArticle = () => {
   const [articlePerPage] = useState(15);
@@ -14,15 +15,19 @@ const GetArticle = () => {
   const articles = useSelector((state) => state.articlesReducer);
   const admin = useSelector((state) => state.adminReducer);
   const [allArticles, setAllArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  
 
   useEffect(() => {
-    if (loading) {
       dispatch(getArticles());
       setAllArticles(articles);
-    }
-  }, [dispatch, articles, loading]);
+      setLoading(true);
+    
+  }, [loading, dispatch, articles]);
+ 
+
+
 
   const paginate = (page) => {
     setCurrentPage(page);
@@ -37,6 +42,7 @@ const GetArticle = () => {
 
   return (
     <div className="dashboard__content__container">
+      {loading?loading :<LoaderData /> }
       {loading && !isEmpty(currentArticles[0]) && (
         <div className="dashboard__content__container__inbox">
           <div className="dashboard__content__container__header">
@@ -62,10 +68,10 @@ const GetArticle = () => {
                 </thead>
                 <tbody>
                   {!isEmpty(currentArticles[0]) &&
-                    currentArticles.map((article, index) => {
+                    currentArticles.map((article) => {
                       return (
                         <>
-                          <tr key={index}>
+                          <tr key={article.id}>
                             <td>{article.title}</td>
                             <td className="content-blog">
                               <div
@@ -79,7 +85,6 @@ const GetArticle = () => {
 
                             <td className="btn-container">
                               <Link
-                                key={index}
                                 to={`/admin/article/update-article/${article.id}`}
                                 className="update__article"
                               >

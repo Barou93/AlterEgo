@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import Logo from "../../styles/assets/icons/logo_alter_ego.svg";
 
 const Header = () => {
@@ -10,18 +10,42 @@ const Header = () => {
   };
 
   return (
-    <header class="header">
-      <div class="header__logo">
+    <header className="header">
+      <div className="header__logo">
         <Link to="/">
-          <img src={Logo} alt="logo de Alter Ego" class="header__logo__img" />
+          <img
+            src={Logo}
+            alt="logo de Alter Ego"
+            className="header__logo__img"
+          />
         </Link>
       </div>
       <nav className={`header__nav ${showLink ? "show__nav" : "hide__nav"} `}>
         <ul>
-          <Link to="/">Accueil</Link>
-          <Link to="/about">A propos de nous</Link>
-          <Link to="/blog">Blog</Link>
-          <Link to="/contact">Contactez-nous</Link>
+          <NavLink
+            className={({isActive}) => (isActive ? "home_navlink-active" : "")}
+            to="/"
+          >
+            Accueil
+          </NavLink>
+          <NavLink
+            className={({isActive}) => (isActive ? "home_navlink-active" : "")}
+            to="/about"
+          >
+            A propos de nous
+          </NavLink>
+          <NavLink
+            className={({isActive}) => (isActive ? "home_navlink-active" : "")}
+            to="/blog"
+          >
+            Blog
+          </NavLink>
+          <NavLink
+            className={({isActive}) => (isActive ? "home_navlink-active" : "")}
+            to="/contact"
+          >
+            Contactez-nous
+          </NavLink>
         </ul>
 
         <span

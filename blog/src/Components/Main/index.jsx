@@ -163,7 +163,7 @@ const Main = () => {
               alt="icon-perception"
               className="illustration__img emojis"
             />
-            <p class="emojis-p">Émotions</p>
+            <p className="emojis-p">Émotions</p>
           </div>
         </div>
         <article className="user-experience">
@@ -266,11 +266,11 @@ const Main = () => {
         <div className="recent-articles">
           <h1 className="recent-articles__title">Nos derniers articles</h1>
           <article className="recent-articles__container">
-            {currentArticles.map((article, index) => {
+            {currentArticles.map((article) => {
               return (
                 <>
                   <Link
-                    key={index}
+                    key={article.id}
                     to={`/blog/${article.id}`}
                     className="recent-articles__content"
                   >

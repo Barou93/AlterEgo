@@ -1,0 +1,20 @@
+.spiner {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  bottom: 150px;
+  left: 40%;
+  right: 0;
+  top: 0;
+  text-align: center;
+
+  &__logo {
+    img {
+      width: 250px;
+      height: 250px;
+    }
+  }
+}
+.loader-data {
+  position: relative;
+}
