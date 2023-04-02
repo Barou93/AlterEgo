@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/AlterEgo/static/css/main.68d9d0fb.css",
-    "main.js": "/AlterEgo/static/js/main.5547a119.js",
+    "main.js": "/AlterEgo/static/js/main.097d0b88.js",
     "static/media/RobotoSlab-VariableFont_wght.ttf": "/AlterEgo/static/media/RobotoSlab-VariableFont_wght.24c71ebd53c3ed50accb.ttf",
     "static/media/emotions.svg": "/AlterEgo/static/media/emotions.f4cb37f1fa1b8a94d81cddd2d0df2316.svg",
     "static/media/perception.svg": "/AlterEgo/static/media/perception.be99c15434d9279e68bf106a20572ace.svg",
@@ -30,18 +30,18 @@
     "static/media/improve.svg": "/AlterEgo/static/media/improve.de5ede68410553c39bcfc543ba4397e0.svg",
     "static/media/growth.svg": "/AlterEgo/static/media/growth.efbcca27257a61c3f554faa6bd669924.svg",
     "static/media/🦆 icon _wallet_.svg": "/AlterEgo/static/media/🦆 icon _wallet_.17a989336f89ec24a08b01b9d2770894.svg",
-    "static/media/profil.svg": "/AlterEgo/static/media/profil.83dc63a31108343308189fcd1bbe74ea.svg",
     "index.html": "/AlterEgo/index.html",
+    "static/media/profil.svg": "/AlterEgo/static/media/profil.83dc63a31108343308189fcd1bbe74ea.svg",
     "static/media/message.svg": "/AlterEgo/static/media/message.e297114ed65de180e408322a5e21ef0d.svg",
     "static/media/article.svg": "/AlterEgo/static/media/article.1715e298e37d25cb75e7e3dc1fa10a88.svg",
     "static/media/home.svg": "/AlterEgo/static/media/home.74519edbcf45a68ed6d95b1148f42136.svg",
     "static/media/logout_white.svg": "/AlterEgo/static/media/logout_white.571b37cf6658f135921d6d4c7db9b8c9.svg",
     "static/media/article-img.svg": "/AlterEgo/static/media/article-img.198e3311f769348e4bbc75c32a9cd33c.svg",
     "main.68d9d0fb.css.map": "/AlterEgo/static/css/main.68d9d0fb.css.map",
-    "main.5547a119.js.map": "/AlterEgo/static/js/main.5547a119.js.map"
+    "main.097d0b88.js.map": "/AlterEgo/static/js/main.097d0b88.js.map"
   },
   "entrypoints": [
     "static/css/main.68d9d0fb.css",
-    "static/js/main.5547a119.js"
+    "static/js/main.097d0b88.js"
   ]
 }
