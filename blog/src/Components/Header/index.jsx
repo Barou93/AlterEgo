@@ -17,35 +17,55 @@ const Header = () => {
             src={Logo}
             alt="logo de Alter Ego"
             className="header__logo__img"
+            aria-label={`logo AlterEgo et lien vers la page d'accueil`}
+            //aria-hidden="true"
           />
         </Link>
       </div>
       <nav className={`header__nav ${showLink ? "show__nav" : "hide__nav"} `}>
         <ul>
-          <NavLink
-            className={({isActive}) => (isActive ? "home_navlink-active" : "")}
-            to="/"
-          >
-            Accueil
-          </NavLink>
-          <NavLink
-            className={({isActive}) => (isActive ? "home_navlink-active" : "")}
-            to="/about"
-          >
-            A propos de nous
-          </NavLink>
-          <NavLink
-            className={({isActive}) => (isActive ? "home_navlink-active" : "")}
-            to="/blog"
-          >
-            Blog
-          </NavLink>
-          <NavLink
-            className={({isActive}) => (isActive ? "home_navlink-active" : "")}
-            to="/contact"
-          >
-            Contactez-nous
-          </NavLink>
+          <li>
+            <NavLink
+              className={({isActive}) =>
+                isActive ? "home_navlink-active" : ""
+              }
+              to="/"
+              //aria-hidden="true"
+              //role="presentation"
+            >
+              Accueil
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({isActive}) =>
+                isActive ? "home_navlink-active" : ""
+              }
+              to="/about"
+            >
+              A propos de nous
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({isActive}) =>
+                isActive ? "home_navlink-active" : ""
+              }
+              to="/blog"
+            >
+              Blog
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={({isActive}) =>
+                isActive ? "home_navlink-active" : ""
+              }
+              to="/contact"
+            >
+              Contactez-nous
+            </NavLink>
+          </li>
         </ul>
 
         <span

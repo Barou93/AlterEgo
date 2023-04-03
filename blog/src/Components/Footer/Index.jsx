@@ -1,18 +1,19 @@
 import React from "react";
 import FooterLogo from "../../styles/assets/icons/logo_alter_ego_white.svg";
+import {Link} from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__container">
         <div className="footer__logo">
-          <a href="#home" className="footer__logo__link">
+          <Link to="/" className="footer__logo__link">
             <img
               src={FooterLogo}
               alt="logo du footer"
               className="footer__logo__img"
             />
-          </a>
+          </Link>
         </div>
         <div className="copyright">
           &copy;Tous les droits reservés Alter Ego 2023
@@ -21,6 +22,7 @@ const Footer = () => {
           <a
             href="https://www.facebook.com/AlterEgoPartners"
             className="footer__socialmedia__link"
+            aria-label={`lien vers la page Facebook d'AlterEgo`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -42,6 +44,7 @@ const Footer = () => {
             href="https://www.linkedin.com/company/alter-ego-partners/"
             className="footer__socialmedia__link"
             target="_blank"
+            aria-label={`lien vers la page LinkedIn d'Ater Ego`}
             rel="noopener noreferrer"
           >
             <svg
@@ -62,6 +65,7 @@ const Footer = () => {
             href="https://www.instagram.com/alterego.partners/"
             className="footer__socialmedia__link"
             target="_blank"
+            aria-label={`lien vers la page Instagram d'AlterEgo`}
             rel="noopener noreferrer"
           >
             <svg

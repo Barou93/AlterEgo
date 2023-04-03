@@ -13,31 +13,28 @@ import cost from "../../styles/assets/icons/cost.svg";
 import step from "../../styles/assets/icons/step.svg";
 import strat from "../../styles/assets/icons/strat.svg";
 import training from "../../styles/assets/icons/training.svg";
-import {isEmpty} from "../../Components/Utils";
 import articleImg from "../../styles/assets/icons/article-img.svg";
 import {useDispatch, useSelector} from "react-redux";
-//import {createInfos} from "../../actions/info.action";
 import {getArticles} from "../../actions/articles.action";
 import {Link} from "react-router-dom";
 import axios from "axios";
+import {isEmpty} from "../Utils";
 
 const Main = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
-  const [loadArticles, setLoadArticles] = useState(true);
+
   const [allArticles, setAllArticles] = useState([]);
   const articles = useSelector((state) => state.articlesReducer);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (loadArticles) {
-      dispatch(getArticles());
-      setAllArticles(articles);
-    }
-  }, [dispatch, articles, loadArticles]);
+    dispatch(getArticles());
+    setAllArticles(articles);
+  }, []);
 
   const currentArticles = Object.values(allArticles).slice(0, 3);
 
@@ -99,7 +96,7 @@ const Main = () => {
           </p>
           <img
             src={asideImg1}
-            alt="icon fille comprehension"
+            alt="icon faisant une proposition aux clients"
             className="aside__infos__img"
           />
         </div>
@@ -111,7 +108,7 @@ const Main = () => {
           </p>
           <img
             src={asideImg2}
-            alt="icon fille comprehension"
+            alt="icon fille qui comprend le besoin du client"
             className="aside__infos__img"
           />
         </div>
@@ -124,7 +121,7 @@ const Main = () => {
           </p>
           <img
             src={asideImg3}
-            alt="icon fille comprehension"
+            alt="icon fille qui fait une analyse des besoins du client"
             className="aside__infos__img"
           />
         </div>
@@ -160,7 +157,7 @@ const Main = () => {
           <div className="illustration__content">
             <img
               src={emotions}
-              alt="icon-perception"
+              alt="icon-emotions"
               className="illustration__img emojis"
             />
             <p className="emojis-p">Émotions</p>
@@ -215,78 +212,83 @@ const Main = () => {
           <h1 className="work__title">Notre méthodologie de travail </h1>
           <article className="work__content">
             <hgroup className="work__content__hgroup">
-              <h3 className="work__content__hgroup__headlines">Audit</h3>
-              <h4 className="work__content__smalltitle">
+              <h2 className="work__content__hgroup__headlines">Audit</h2>
+              <h3 className="work__content__smalltitle">
                 Notre audit permet d’évaluer votre entreprise en termes
                 d’Expérience Client. Cette analyse nous permettra de fournir un
                 premier bilan qui servira d’instrument de prise de décision et à
                 la mise en place d’une stratégie CX. A la fin de l’audit, le
                 rapport établi fournit le niveau de maturité actuel, propose des
                 recommandations globales et des pistes d’amélioration.
-              </h4>
+              </h3>
             </hgroup>
             <img
               src={step}
-              alt="etapes d'etudes expérience client entreprise"
+              alt="les étapes pour faire l'audit de l'expérience client d'une entreprise"
             />
           </article>
           <article className="work__content">
             <hgroup className="work__content__hgroup">
-              <h3 className="work__content__hgroup__headlines">Stratégie</h3>
-              <h4 className="work__content__smalltitle">
+              <h2 className="work__content__hgroup__headlines">Stratégie</h2>
+              <h3 className="work__content__smalltitle">
                 Notre stratégie d’Expérience Client claire, adaptée, structurée
                 et cohérente est un levier de différenciation stratégique. Cette
                 stratégie vous permet de choisir la meilleure approche sur la
                 base de votre promesse et définir le plan d’action idéal à
                 mettre en œuvre.
-              </h4>
+              </h3>
             </hgroup>
             <img
               src={strat}
-              alt="etapes d'etudes expérience client entreprise"
+              alt="Les étapes pour mettre en place une stratégie d'expérience client"
             />
           </article>
           <article className="work__content">
             <hgroup className="work__content__hgroup">
-              <h3 className="work__content__hgroup__headlines">Formation</h3>
-              <h4 className="work__content__smalltitle">
+              <h2 className="work__content__hgroup__headlines">Formation</h2>
+              <h3 className="work__content__smalltitle">
                 La mise en place d’une entreprise d’expérience est souvent la
                 source de bons nombres de changement au niveau organisationnel.
                 Afin de mieux appréhender cela, la formation sera le levier pour
                 des accompagnements individuels ou collectifs de vos
                 collaborateurs.
-              </h4>
+              </h3>
             </hgroup>
             <img
               src={training}
-              alt="etapes d'etudes expérience client entreprise"
+              alt="Notre processus de formation pour les entreprises"
             />
           </article>
         </div>
         <div className="recent-articles">
           <h1 className="recent-articles__title">Nos derniers articles</h1>
           <article className="recent-articles__container">
-            {currentArticles.map((article) => {
-              return (
-                <>
-                  <Link
-                    key={article.id}
-                    to={`/blog/${article.id}`}
-                    className="recent-articles__content"
-                  >
-                    {article.image ? (
-                      <img src={article.image} alt="l'article du jour" />
-                    ) : (
-                      <img src={articleImg} alt="l'article du jour" />
-                    )}
-                    <p>
-                      {" "}
-                      <br /> {article.title}
-                    </p>
-                  </Link>
-                </>
-              );
-            })}
+            {!isEmpty(currentArticles[0]) &&
+              currentArticles.map((article) => {
+                return (
+                  <>
+                    <Link
+                      key={article.id}
+                      to={`/blog/${article.id}`}
+                      aria-label={`lien vers l'article ${article.title}`}
+                      className="recent-articles__content"
+                    >
+                      {article.image ? (
+                        <img
+                          src={article.image}
+                          alt={`lien vers l'article ${article.title}`}
+                        />
+                      ) : (
+                        <img
+                          src={articleImg}
+                          alt={`lien vers l'article ${article.title}`}
+                        />
+                      )}
+                      <h2>{article.title}</h2>
+                    </Link>
+                  </>
+                );
+              })}
           </article>
         </div>
         <div className="contact-us">
@@ -294,38 +296,42 @@ const Main = () => {
           <form onSubmit={handlePostMessage} className="contact-us__form">
             <div className="contact-us__form__container">
               <div className="contact-us__form__input">
-                <label>Nom & Prénom</label>
+                <label htmlFor="name">Nom & Prénom</label>
                 <input
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   type="text"
+                  id="name"
                   placeholder="Entrez votre nom"
                 />
               </div>
               <br />
               <div className="contact-us__form__input">
-                <label>Email</label>
+                <label htmlFor="email">Email</label>
                 <input
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   type="text"
+                  id="email"
                   placeholder="Entrez votre email"
                 />
               </div>
               <br />
               <div className="contact-us__form__input">
-                <label>N° Téléphone</label>
+                <label htmlFor="phone">N° Téléphone</label>
                 <input
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   type="text"
+                  id="phone"
                   placeholder="Entrez votre numéro de téléphone"
                 />
               </div>
               <div className="contact-us__form__textarea">
-                <label htmlFor="name">Dites-nous en plus</label>
+                <label htmlFor="message">Dites-nous en plus</label>
                 <textarea
                   value={message}
+                  id="message"
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Ecrivez votre message"
                 />

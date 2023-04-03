@@ -1,5 +1,5 @@
 import DOMPurify from "dompurify";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router-dom";
 import {readArticle} from "../../actions/article.action";
@@ -11,16 +11,14 @@ import {isEmpty} from "../../Components/Utils";
 const Article = () => {
   const admins = useSelector((state) => state.adminsReducer);
   const article = useSelector((state) => state.articleReducer);
-  const [loading, setLoading] = useState(true);
+
   const dispatch = useDispatch();
 
   const {id: articleId} = useParams();
   //console.log(article);
   useEffect(() => {
-    if (loading) {
-      dispatch(readArticle(articleId));
-    }
-  }, [loading, dispatch, articleId]);
+    dispatch(readArticle(articleId));
+  }, []);
   return (
     <>
       <Header />

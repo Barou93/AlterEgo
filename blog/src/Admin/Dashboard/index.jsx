@@ -1,19 +1,19 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import BlogWoman from "../../styles/assets/icons/blog_woman.svg";
 import RecentArticle from "../../styles/assets/icons/article.svg";
 import RecentMessage from "../../styles/assets/icons/message.svg";
-import TotalArticles from "../../styles/assets/icons/article.svg";
+
 import {Link} from "react-router-dom";
-import {UidContext} from "../../Components/AppContext";
+
 import {useDispatch, useSelector} from "react-redux";
 import {isEmpty} from "../../Components/Utils";
 import {dateFormater} from "../../Components/HumanReadableDateFormat";
 import DOMPurify from "dompurify";
 import {getArticles} from "../../actions/articles.action";
-import LoaderData from "../../Components/LoaderData";
+//import LoaderData from "../../Components/LoaderData";
 
 const Dashboard = () => {
-  const uid = useContext(UidContext);
+  
   const adminData = useSelector((state) => state.adminReducer);
   const adminsData = useSelector((state) => state.adminsReducer);
   const dispatch = useDispatch();
@@ -28,15 +28,15 @@ const Dashboard = () => {
       dispatch(getArticles());
       setAllNews(articles);
     setLoading(true);
-  }, [dispatch, articles, loading]);
+  }, []);
 
-  //console.log(allNews.length);
+
   const currentArticles = Object.values(allNews).slice(0, 3);
-  //console.log(currentArticles);
+
 
   return (
     <div className="dashboard__content__container">
-      {loading?loading :<LoaderData />}
+  
       {loading && !isEmpty(currentArticles[0]) && (
         <>
           <div className="dashboard__content__main">
@@ -46,6 +46,7 @@ const Dashboard = () => {
               Bonjour {adminData.username}
             </h1>
             <Link
+               aria-label={`créer un nouveau article`}
               to={"/admin/article/create"}
               className="dashboard__content__insight__create"
             >
@@ -91,7 +92,7 @@ const Dashboard = () => {
                             })
                             .join("")}
                       </p>
-                      <Link className="read_one" to={`/blog/${article.id}`}>
+                      <Link aria-label={`Lire un article`} className="read_one" to={`/blog/${article.id}`}>
                         Lire l'article
                       </Link>
                     </div>

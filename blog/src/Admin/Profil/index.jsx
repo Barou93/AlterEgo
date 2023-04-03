@@ -10,14 +10,14 @@ const Profil = () => {
   const [loadUsername, setLoadUsername] = useState(true);
   const adminData = useSelector((state) => state.adminReducer);
   const dispatch = useDispatch();
-  const {id: adminId} = useParams();
+  //const {id: adminId} = useParams();
   useEffect(() => {
     if (loadUsername) {
-      dispatch(getAdmin(adminId));
+      dispatch(getAdmin(adminData.id));
     } else {
       setLoadUsername(false);
     }
-  }, [loadUsername, dispatch, adminId]);
+  }, [loadUsername, dispatch, adminData]);
 
   const handleUpdateName = async () => {
     if (editName) {
@@ -89,6 +89,7 @@ const Profil = () => {
               )}
               {updateUsername ? (
                 <Link
+                  aria-label={`Annulter la modification du profile`}
                   onClick={() => setUpdateUsername(!updateUsername)}
                   className="cancel__btn"
                 >

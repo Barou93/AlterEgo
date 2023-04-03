@@ -5,7 +5,7 @@ import {readInfos} from "../../actions/info.action";
 import {dateFormater} from "../../Components/HumanReadableDateFormat";
 import DeleteInfos from "../DeleteInfos";
 const ReadInfos = () => {
-  const [isLoad, setIsLoad] = useState(true);
+  const [isLoad] = useState(true);
   const message = useSelector((state) => state.infoReducer);
   const dispatch = useDispatch();
 
@@ -13,9 +13,8 @@ const ReadInfos = () => {
   useEffect(() => {
     if (isLoad) {
       dispatch(readInfos(messageId));
-      //setIsLoad(false);
     }
-  }, [dispatch, isLoad, messageId]);
+  }, []);
 
   return (
     <div className="dashboard__content__container">
@@ -38,7 +37,11 @@ const ReadInfos = () => {
               </div>
             </div>
             <div className="dashboard__content__create__article__submit msg__btns">
-              <Link to="/admin/message" className="delete__article cancel">
+              <Link
+                aria-label={`Retourner à la boite de réception`}
+                to="/admin/message"
+                className="delete__article cancel"
+              >
                 Retour
               </Link>
 

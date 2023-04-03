@@ -1,21 +1,13 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext} from "react";
 
-import {Outlet, Link, Navigate, NavLink} from "react-router-dom";
+import {Outlet, NavLink} from "react-router-dom";
 import {SidebarData} from "./SidebarData";
 import AdminHeader from "./AdminHeader";
 import {UidContext} from "./AppContext";
 import Login from "../Admin/Login";
 
 const Sidebar = () => {
-  const [sidebar, setSidebar] = useState(false);
-  const showSidebar = () => setSidebar(!sidebar);
   const uid = useContext(UidContext);
-  // const [isAuth, setIsAuth] = useState(false);
-  // useEffect(() => {
-  //   if (uid) {
-  //     setIsAuth(true);
-  //   }
-  // }, [uid]);
 
   return (
     <>

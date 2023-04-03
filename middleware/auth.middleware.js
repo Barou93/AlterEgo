@@ -1,5 +1,5 @@
-const jwt = require('jsonwebtoken');
-const models = require('../models');
+const jwt = require("jsonwebtoken");
+const models = require("../models");
 
 const {Admin} = models;
 
@@ -9,7 +9,7 @@ module.exports.checkAdmin = (req, res, next) => {
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (err) {
         res.locals.admin = null;
-        res.cookie('jwt', '', {maxAge: 1});
+        res.cookie("jwt", "", {maxAge: 1});
         next();
       } else {
         const admin = await Admin.findByPk(decodedToken.id);
@@ -29,15 +29,16 @@ module.exports.requireAuth = (req, res, next) => {
     jwt.verify(token, process.env.TOKEN_SECRET, async (err, decodedToken) => {
       if (err) {
         console.log(err);
+
         //res.sendStatus(200).json('No token');
       } else {
         const admin = await Admin.findByPk(decodedToken.id);
         res.locals.admin = admin;
-        console.log(admin.id);
+        //console.log(admin.id);
         next();
       }
     });
   } else {
-    console.log('No Token');
+    console.log("No Token");
   }
 };

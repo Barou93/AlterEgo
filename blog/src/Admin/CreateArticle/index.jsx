@@ -1,17 +1,14 @@
-import React, {useRef, useState, useMemo} from 'react';
-import ReactQuill from 'react-quill';
-import Quill from 'quill';
-import 'react-quill/dist/quill.snow.css';
-import {useDispatch, useSelector} from 'react-redux';
-import {getArticles} from '../../actions/articles.action';
-import {createArticle} from '../../actions/article.action';
-//import ImgIcon from '../../styles/assets/icons/article-img.svg';
-import {Navigate, Link} from 'react-router-dom';
+import React, {useRef, useState, useMemo} from "react";
+import ReactQuill from "react-quill";
+
+import "react-quill/dist/quill.snow.css";
+import {useDispatch, useSelector} from "react-redux";
+
+import {createArticle} from "../../actions/article.action";
 
 const CreateArticle = () => {
-  const [content, setContent] = useState('');
-  //const [editor, setEditor] = useState(null);
-  const [title, setTitle] = useState('');
+  const [content, setContent] = useState("");
+  const [title, setTitle] = useState("");
   const [file, setFile] = useState();
   const [isUpload, setisUpload] = useState(false);
   const [imagePreview, setImagePreview] = useState();
@@ -35,45 +32,45 @@ const CreateArticle = () => {
       toolbar: {
         contair: [
           [{heaer: [1, 2, 3, 4, 5, 6, false]}],
-          ['bold', 'italic', 'underline', 'strike'],
+          ["bold", "italic", "underline", "strike"],
           [
             {
               clor: [
-                '#000000',
-                '#e60000',
-                '#ff9900',
-                '#ffff00',
-                '#008a00',
-                '#0066cc',
-                '#9933ff',
-                '#ffffff',
-                '#facccc',
-                '#ffebcc',
-                '#ffffcc',
-                '#cce8cc',
-                '#cce0f5',
-                '#ebd6ff',
-                '#bbbbbb',
-                '#f06666',
-                '#ffc266',
-                '#ffff66',
-                '#66b966',
-                '#66a3e0',
-                '#c285ff',
-                '#888888',
-                '#a10000',
-                '#b26b00',
-                '#b2b200',
-                '#006100',
-                '#0047b2',
-                '#6b24b2',
-                '#444444',
-                '#5c0000',
-                '#663d00',
-                '#666600',
-                '#003700',
-                '#002966',
-                '#3d1466',
+                "#000000",
+                "#e60000",
+                "#ff9900",
+                "#ffff00",
+                "#008a00",
+                "#0066cc",
+                "#9933ff",
+                "#ffffff",
+                "#facccc",
+                "#ffebcc",
+                "#ffffcc",
+                "#cce8cc",
+                "#cce0f5",
+                "#ebd6ff",
+                "#bbbbbb",
+                "#f06666",
+                "#ffc266",
+                "#ffff66",
+                "#66b966",
+                "#66a3e0",
+                "#c285ff",
+                "#888888",
+                "#a10000",
+                "#b26b00",
+                "#b2b200",
+                "#006100",
+                "#0047b2",
+                "#6b24b2",
+                "#444444",
+                "#5c0000",
+                "#663d00",
+                "#666600",
+                "#003700",
+                "#002966",
+                "#3d1466",
               ],
             },
           ],
@@ -86,26 +83,26 @@ const CreateArticle = () => {
   const handlePost = async () => {
     if ((title && content) || (title && content && file)) {
       const data = new FormData();
-      data.append('adminId', admin.id);
+      data.append("adminId", admin.id);
 
-      if (title) data.append('title', title);
-      if (content) data.append('content', content);
-      if (file) data.append('file', file);
+      if (title) data.append("title", title);
+      if (content) data.append("content", content);
+      if (file) data.append("file", file);
       console.log(data);
       await dispatch(createArticle(data));
       cancelPost();
-      window.location = '/admin/article';
+      window.location = "/admin/article";
     } else {
-      console.log('Veuillez entrer un message');
+      console.log("Veuillez entrer un message");
     }
   };
 
   //console.log(file);
 
   const cancelPost = () => {
-    setFile('');
-    setTitle('');
-    setContent('');
+    setFile("");
+    setTitle("");
+    setContent("");
   };
 
   return (
@@ -152,8 +149,8 @@ const CreateArticle = () => {
         <label
           className={
             isUpload
-              ? 'dashboard__content__create__article__file__label fileUpload'
-              : 'dashboard__content__create__article__file__label'
+              ? "dashboard__content__create__article__file__label fileUpload"
+              : "dashboard__content__create__article__file__label"
           }
           htmlFor="file"
         >
@@ -162,8 +159,8 @@ const CreateArticle = () => {
         <div
           className={
             isUpload
-              ? 'dashboard__content__create__article__file__img isUpload'
-              : 'dashboard__content__create__article__file__img'
+              ? "dashboard__content__create__article__file__img isUpload"
+              : "dashboard__content__create__article__file__img"
           }
         >
           {isUpload ? (

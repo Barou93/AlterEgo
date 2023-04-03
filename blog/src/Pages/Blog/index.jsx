@@ -23,15 +23,15 @@ const Blog = () => {
     dispatch(getArticles());
     setAllPost(articles);
     setIsload(true);
-  }, [isLoad, dispatch, articles]);
+  }, []);
 
   const lastPageIndex = currentPage * articlePerPage;
   const firstPageIndex = lastPageIndex - articlePerPage;
-  const currentPost = Object.values(allPost).slice(
-    firstPageIndex,
-    lastPageIndex
-  );
+  const currentPost = Object.values(allPost).slice(firstPageIndex,lastPageIndex);
+   //const currentPost = allPost.map(o => Object.fromEntries(Object.entries(o).slice(0, 3)));
+   //console.log(currentPost);
 
+  //console.log(currentPost);
   const paginate = (page) => {
     setCurrentPage(page);
   };
@@ -39,35 +39,41 @@ const Blog = () => {
   return (
     <>
       <Header />
+      
       <main className="container">
         {isLoad?isLoad : <LoaderData />}
         {isLoad && !isEmpty(currentPost[0]) && (
-             <div className="blog">
+           <div className="blog">
           <div className="blog__container">
             {!isEmpty(currentPost[0]) &&
-              currentPost.map((post, index) => {
+              articles.map((post) => {
                 return (
-                  <article key={index} className="blog__resume">
-                    <Link to={`/blog/${post.id}`} className="blog__resume__img">
+                  <li key={post.id} className="blog__resume">
+                    <Link to={`/blog/${post.id}`}
+                          aria-label={`l'illustration de l'article ${post.title}`}
+                          className="blog__resume__img">
                       {post.image !== null ? (
                         <img
                           src={post.image}
+                          
                           alt="contenu de l'article du blog "
                         />
                       ) : null}
                     </Link>
                     <div className="blog__resume__text">
                       <h2 className="blog__resume__text__insight">
-                        <Link className="insight__link" to={`/blog/${post.id}`}>
+                        <Link className="insight__link"
+                              aria-label={`le titre  de l'article`}
+                              to={`/blog/${post.id}`}>
                           {post.title}
                         </Link>
                       </h2>
                       <div className="blog__resume__text__infos">
-                        <p>{dateFormater(post.createdAt)} </p>
+                        <p>{dateFormater(post.createdAt.toUpperCase())} </p>
                         {!isEmpty(admins[0]) &&
                           admins.map((admin) => {
                             if (admin.id === post.adminId)
-                              return <span>{admin.username}</span>;
+                              return <span>{admin.username.toUpperCase()}</span>;
                             return null;
                           })}
                       </div>
@@ -81,9 +87,10 @@ const Blog = () => {
                         />
                       </div>
                     </div>
-                  </article>
+                  </li>
                 );
               })}
+
           </div>
           <Pagination
             totalArticles={allPost.length}
@@ -93,6 +100,7 @@ const Blog = () => {
           />
         </div>
         )}
+        {isEmpty(currentPost[0]) && (<h1 className="empty-article">Pas d'articles pour le moment</h1>) }
       </main>
       <Footer />
     </>

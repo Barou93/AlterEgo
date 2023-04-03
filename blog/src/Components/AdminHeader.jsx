@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
 import Logo from ".././styles/assets/icons/logo_white_alter_ego.svg";
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";

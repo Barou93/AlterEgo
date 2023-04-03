@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
+const compression = require('compression');
 
 //Routes dependances
 const adminRoutes = require('./routes/admin.routes');
@@ -10,12 +11,19 @@ const articleRoutes = require('./routes/article.routes');
 const infosRoutes = require('./routes/information.routes');
 const app = express();
 
+app.use(compression());
+
+//GithubPages Url
+//'https://barou93.github.io/AlterEgo/'
+
+
 require('dotenv').config('./.env');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 const corsOptions = {
   origin: process.env.FRONT_URL,
+  //origin: ,
   credentials: true,
   allowedHeaders: ['sessionId', 'Content-Type'],
   exposedHeaders: ['sessionId'],
@@ -32,7 +40,6 @@ app.get('/jwtid', requireAuth, (req, res) => {
 });
 
 app.use("/uploads", express.static(path.join("uploads")));
-
 
 app.use('/api/admin', adminRoutes);
 app.use('/api/article',articleRoutes);

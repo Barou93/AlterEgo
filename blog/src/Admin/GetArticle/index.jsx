@@ -2,18 +2,17 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {getArticles} from "../../actions/articles.action";
-import DOMPurify, {sanitize} from "isomorphic-dompurify";
+import DOMPurify from "dompurify";
 import Pagination from "../../Components/Pagination";
 import {isEmpty} from "../../Components/Utils";
 import {dateFormater} from "../../Components/HumanReadableDateFormat";
 import DeleteArticle from "../DeleteArticle";
-import LoaderData from "../../Components/LoaderData";
+
 
 const GetArticle = () => {
   const [articlePerPage] = useState(15);
   const [currentPage, setCurrentPage] = useState(1);
   const articles = useSelector((state) => state.articlesReducer);
-  const admin = useSelector((state) => state.adminReducer);
   const [allArticles, setAllArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -24,7 +23,7 @@ const GetArticle = () => {
       setAllArticles(articles);
       setLoading(true);
     
-  }, [loading, dispatch, articles]);
+  }, []);
  
 
 
@@ -42,12 +41,13 @@ const GetArticle = () => {
 
   return (
     <div className="dashboard__content__container">
-      {loading?loading :<LoaderData /> }
+    
       {loading && !isEmpty(currentArticles[0]) && (
         <div className="dashboard__content__container__inbox">
           <div className="dashboard__content__container__header">
             <h1 className="dashboard__title">Tous les articles</h1>
             <Link
+               aria-label={`créer un nouveau article`}
               to={"/admin/article/create"}
               className="dashboard__content__insight__create add_article"
             >
@@ -85,6 +85,7 @@ const GetArticle = () => {
 
                             <td className="btn-container">
                               <Link
+                                 aria-label={`Modifier l'article ${article.title}`}
                                 to={`/admin/article/update-article/${article.id}`}
                                 className="update__article"
                               >

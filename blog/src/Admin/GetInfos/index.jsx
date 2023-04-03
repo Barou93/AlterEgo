@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import DOMPurify, {sanitize} from "isomorphic-dompurify";
 import {useDispatch, useSelector} from "react-redux";
 import {getInfos} from "../../actions/infos.action";
 import {isEmpty} from "../../Components/Utils";
 import {dateFormater} from "../../Components/HumanReadableDateFormat";
 import DeleteInfos from "../DeleteInfos";
 import Pagination from "../../Components/Pagination";
-import LoaderData from "../../Components/LoaderData";
+
 const GetInfos = () => {
   const [messagePerPage] = useState(15);
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,7 +20,7 @@ const GetInfos = () => {
       dispatch(getInfos());
       setAllMessages(messages);
     setLoadMessage(true);
-  }, [messages, loadMessage, dispatch]);
+  }, []);
 
   const paginate = (page) => {
     setCurrentPage(page);
@@ -32,7 +31,7 @@ const GetInfos = () => {
   const currentMessages = Object.values(allMessages).slice(firstPage, lastPage);
   return (
     <div className="dashboard__content__container">
-      {loadMessage?loadMessage :<LoaderData/>}
+      
       {loadMessage && !isEmpty(currentMessages[0]) && (
          <div className="dashboard__content__container__inbox">
         <h1 className="dashboard__title">Boite de reception</h1>
@@ -61,6 +60,7 @@ const GetInfos = () => {
                           <td>{dateFormater(message.createdAt)}</td>
                           <td>
                             <Link
+                               aria-label={`Consulter le message de  ${message.name}`}
                               className="message_link"
                               to={`/admin/message/${message.id}`}
                             >

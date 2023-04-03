@@ -1,21 +1,18 @@
 import DOMPurify from "dompurify";
 import React, {useRef, useState, useEffect, useMemo} from "react";
 import ReactQuill from "react-quill";
-//import Quill from 'quill';
+
 import "react-quill/dist/quill.snow.css";
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useParams} from "react-router-dom";
 import {readArticle, updateArticle} from "../../actions/article.action";
-import {getArticles} from "../../actions/articles.action";
 
 const UpdatedArticle = () => {
   const [updateContent, setUpdateContent] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
   const [isLoad, setIsLoad] = useState(true);
   const [editTitle, setEditTitle] = useState("");
-  const [updateFile, setUpdateFile] = useState();
-  const [isUpload, setisUpload] = useState(false);
-  const [imagePreview, setImagePreview] = useState();
+
   const quillRef = useRef(null);
   const dispatch = useDispatch();
   const oneArticle = useSelector((state) => state.articleReducer);
@@ -26,16 +23,10 @@ const UpdatedArticle = () => {
       dispatch(readArticle(articleId));
       setIsLoad(false);
     }
-  }, [dispatch, isLoad, articleId]);
+  }, []);
 
   const handleUpdate = (value) => {
     setUpdateContent(value);
-  };
-  const handleDownload = (e) => {
-    const fileImg = URL.createObjectURL(e.target.files[0]);
-    setisUpload(true);
-    setImagePreview(fileImg);
-    setUpdateFile(e.target.files[0]);
   };
 
   const modules = useMemo(
@@ -105,11 +96,6 @@ const UpdatedArticle = () => {
     }
   };
 
-  const cancelPost = () => {
-    setUpdateFile("");
-    setEditTitle("");
-    setUpdateContent("");
-  };
   return (
     <div className="dashboard__content__container">
       <div className="dashboard__content__create__article__container">
@@ -163,7 +149,11 @@ const UpdatedArticle = () => {
               {isUpdated ? (
                 <>
                   <input type="submit" value="Enregistrer" />
-                  <Link to="/admin/article" className="cancel-article">
+                  <Link
+                    aria-label={`Annuler la modification de l'article ${oneArticle.title}`}
+                    to="/admin/article"
+                    className="cancel-article"
+                  >
                     Annuler
                   </Link>
                 </>
@@ -190,13 +180,6 @@ const UpdatedArticle = () => {
             />
           ) : null}
         </div>
-        <input
-          onChange={handleDownload}
-          type="file"
-          name="file"
-          id="file"
-          className="file__input"
-        />
       </div>
     </div>
   );

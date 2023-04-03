@@ -7,9 +7,11 @@ body {
   overflow-x: hidden;
   font-family: $primaryfont;
   color: $blackcolor;
-  scroll-margin: 100px 0 0 0;
+  //scroll-margin: 100px 0 0 0;
+
   word-break: break-word;
-  background-color: #f7fafb;
+  //background-color: #f7fafb;
+  background-color: #fff;
 }
 p,
 ol,
