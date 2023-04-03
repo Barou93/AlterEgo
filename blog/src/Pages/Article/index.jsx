@@ -18,7 +18,7 @@ const Article = () => {
   //console.log(article);
   useEffect(() => {
     dispatch(readArticle(articleId));
-  }, []);
+  }, [dispatch, articleId]);
   return (
     <>
       <Header />

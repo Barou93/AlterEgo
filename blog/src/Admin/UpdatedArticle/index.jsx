@@ -23,7 +23,7 @@ const UpdatedArticle = () => {
       dispatch(readArticle(articleId));
       setIsLoad(false);
     }
-  }, []);
+  }, [isLoad, dispatch, articleId]);
 
   const handleUpdate = (value) => {
     setUpdateContent(value);

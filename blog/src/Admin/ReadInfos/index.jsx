@@ -14,7 +14,7 @@ const ReadInfos = () => {
     if (isLoad) {
       dispatch(readInfos(messageId));
     }
-  }, []);
+  }, [dispatch, messageId, isLoad]);
 
   return (
     <div className="dashboard__content__container">

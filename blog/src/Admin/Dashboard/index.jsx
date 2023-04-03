@@ -28,7 +28,7 @@ const Dashboard = () => {
       dispatch(getArticles());
       setAllNews(articles);
     setLoading(true);
-  }, []);
+  }, [articles, dispatch]);
 
 
   const currentArticles = Object.values(allNews).slice(0, 3);

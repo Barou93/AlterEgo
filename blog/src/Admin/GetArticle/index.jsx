@@ -23,7 +23,7 @@ const GetArticle = () => {
       setAllArticles(articles);
       setLoading(true);
     
-  }, []);
+  }, [dispatch, articles]);
  
 
 

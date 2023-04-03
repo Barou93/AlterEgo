@@ -20,7 +20,7 @@ const GetInfos = () => {
       dispatch(getInfos());
       setAllMessages(messages);
     setLoadMessage(true);
-  }, []);
+  }, [messages, dispatch]);
 
   const paginate = (page) => {
     setCurrentPage(page);

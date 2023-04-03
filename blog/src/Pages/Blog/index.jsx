@@ -23,7 +23,7 @@ const Blog = () => {
     dispatch(getArticles());
     setAllPost(articles);
     setIsload(true);
-  }, []);
+  }, [dispatch, articles]);
 
   const lastPageIndex = currentPage * articlePerPage;
   const firstPageIndex = lastPageIndex - articlePerPage;

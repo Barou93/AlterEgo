@@ -34,7 +34,7 @@ const Main = () => {
   useEffect(() => {
     dispatch(getArticles());
     setAllArticles(articles);
-  }, []);
+  }, [dispatch, articles]);
 
   const currentArticles = Object.values(allArticles).slice(0, 3);
 

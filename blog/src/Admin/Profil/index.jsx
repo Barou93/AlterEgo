@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {getAdmin, updateAdmin} from "../../actions/admin.action";
 import DeleteAdmin from "../DeleteAdmin";
 
@@ -10,7 +10,7 @@ const Profil = () => {
   const [loadUsername, setLoadUsername] = useState(true);
   const adminData = useSelector((state) => state.adminReducer);
   const dispatch = useDispatch();
-  //const {id: adminId} = useParams();
+
   useEffect(() => {
     if (loadUsername) {
       dispatch(getAdmin(adminData.id));
