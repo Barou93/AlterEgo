@@ -68,10 +68,10 @@ const About = () => {
                 src={Worker}
                 alt="icon-collaboration"
               />
-              <figcaption className="about__help__img__container__box__caption">
+              <figcaption className="about__help__img__container__box__caption text-large">
                 Approche centrée sur le client
               </figcaption>
-              <span className="about__help__img__container__box__title">
+              <span className="about__help__img__container__box__title span">
                 Nos clients sont au coeur de notre activité, On vous accompagne
                 étape par étape pour étape dans la mise en place d’une stratégie
                 CX.
@@ -83,10 +83,10 @@ const About = () => {
                 src={Collabo}
                 alt="icon-collaboration"
               />
-              <figcaption className="about__help__img__container__box__caption">
+              <figcaption className="about__help__img__container__box__caption text-large">
                 Une collaboration efficace
               </figcaption>
-              <span className="about__help__img__container__box__title">
+              <span className="about__help__img__container__box__title span">
                 Nous sommes convaincus que la clé du succès réside dans une
                 collaboration étroite et transparente avec nos clients.
               </span>
@@ -97,10 +97,10 @@ const About = () => {
                 src={Time}
                 alt="icon-collaboration"
               />
-              <figcaption className="about__help__img__container__box__caption">
+              <figcaption className="about__help__img__container__box__caption text-large">
                 Livraison dans les délais
               </figcaption>
-              <span className="about__help__img__container__box__title">
+              <span className="about__help__img__container__box__title span">
                 Nous veillons toujours à ce que notre tâche soit remise dans le
                 délai imparti. Notre principale priorité est la satisfaction du
                 client.

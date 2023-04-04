@@ -17,7 +17,7 @@
       "username": "root",
       "password": "root",
       "database": "AlterEgo_prod",
-      "host": "127.0.0.1",
+      "host": "https://alterego.onrender.com",
       "dialect": "mysql"
    }
 }

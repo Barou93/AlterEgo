@@ -26,16 +26,17 @@ module.exports.createArticle = async (req, res) => {
 
     const articleImg =
       file !== undefined ? `uploads/resized_${file.filename}` : null;
-    //let articleItem;
 
-    await sharp(file.path)
-      .resize(600, 488, {fit: "cover"})
-      .jpeg({
-        quality: 100,
-        chromaSubsampling: "4:4:4",
-      })
-      .toFile(articleImg);
-    fs.unlinkSync(file.path);
+    if (file !== undefined) {
+      await sharp(file.path)
+        .resize(600, 488, {fit: "cover"})
+        .jpeg({
+          quality: 100,
+          chromaSubsampling: "4:4:4",
+        })
+        .toFile(articleImg);
+      fs.unlinkSync(file.path);
+    }
 
     imgUrl = articleImg;
 
@@ -52,7 +53,7 @@ module.exports.createArticle = async (req, res) => {
           content,
         };
 
-    console.log(articleItem);
+    //console.log(articleItem);
 
     if (isCreated)
       return res.status(401).json(`l'article ${title} a déjà été créé.`);

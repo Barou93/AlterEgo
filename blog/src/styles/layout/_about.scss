@@ -25,6 +25,7 @@
       &__btn {
         background: $secondarycolor;
         padding: 12px 18px;
+        color: #fff !important;
         text-align: center;
         color: #000;
         font-weight: bold;
@@ -130,11 +131,12 @@
         &__caption {
           font-size: 18px;
           font-weight: bold;
-          color: $primarycolor;
+          color: #fff;
           margin-bottom: 15px;
         }
         &__title {
           font-size: 15px;
+          color: #fff;
         }
       }
     }
@@ -213,7 +215,7 @@
 }
 
 .blue-caption {
-  color: $secondarycolor;
+  color: #fff;
 }
 
 .blue {
@@ -222,4 +224,11 @@
   p {
     color: #fff;
   }
+}
+
+.text-large {
+  color: $primarycolor;
+}
+.span {
+  color: $primarycolor;
 }
