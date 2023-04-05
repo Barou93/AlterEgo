@@ -12,7 +12,7 @@ const createToken = (id) => {
 };
 //Création d'un compte admin
 module.exports.register = async (req, res) => {
-  //console.log(req.body);
+  
   //Verify if eamil and password values matched with the regex values
   const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
   const passwordRegex =
@@ -61,7 +61,7 @@ module.exports.register = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({error});
-    console.log(error);
+   
   }
 };
 
@@ -105,7 +105,7 @@ module.exports.login = async (req, res) => {
       return;
     }
 
-    //console.log(admin.id);
+    
 
     //All values is valiates
     const token = createToken(admin.id);
@@ -113,7 +113,7 @@ module.exports.login = async (req, res) => {
     return res.status(200).json({admin: admin.id, token});
   } catch (error) {
     res.status(500).json(error);
-    console.log(error);
+   
   }
 };
 

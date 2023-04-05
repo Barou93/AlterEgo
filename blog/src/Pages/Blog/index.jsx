@@ -28,10 +28,8 @@ const Blog = () => {
   const lastPageIndex = currentPage * articlePerPage;
   const firstPageIndex = lastPageIndex - articlePerPage;
   const currentPost = Object.values(allPost).slice(firstPageIndex,lastPageIndex);
-   //const currentPost = allPost.map(o => Object.fromEntries(Object.entries(o).slice(0, 3)));
-   //console.log(currentPost);
-
-  //console.log(currentPost);
+   
+  
   const paginate = (page) => {
     setCurrentPage(page);
   };

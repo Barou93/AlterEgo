@@ -26,8 +26,6 @@ const Profil = () => {
       await dispatch(updateAdmin(adminData.id, data));
       setUpdateUsername(false);
       window.location = "/admin/dashboard";
-    } else {
-      console.log("Impossible de modifier votre nom réessayer svp!");
     }
   };
 

@@ -91,8 +91,6 @@ const UpdatedArticle = () => {
       setIsUpdated(false);
       //cancelPost();
       window.location = "/admin/article";
-    } else {
-      console.log("Veuillez entrer un message");
     }
   };
 

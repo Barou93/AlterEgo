@@ -53,8 +53,6 @@ module.exports.createArticle = async (req, res) => {
           content,
         };
 
-    //console.log(articleItem);
-
     if (isCreated)
       return res.status(401).json(`l'article ${title} a déjà été créé.`);
 
