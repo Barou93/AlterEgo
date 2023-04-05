@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 const corsOptions = {
-  origin: process.env.FRONT_URL,
+  origin: process.env.FRONT_URL || process.env.DEPLOY_URL,
   //origin: ,
   credentials: true,
   allowedHeaders: ['sessionId', 'Content-Type'],
