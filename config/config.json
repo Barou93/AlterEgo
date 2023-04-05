@@ -1,23 +1,23 @@
 {
-   "development": {
-      "username": "root",
-      "password": "root",
-      "database": "AlterEgoDB_dev",
-      "host": "127.0.0.1",
-      "dialect": "mysql"
-   },
-   "test": {
-      "username": "root",
-      "password": "root",
-      "database": "AlterEgoDB_test",
-      "host": "127.0.0.1",
-      "dialect": "mysql"
-   },
-   "production": {
-      "username": "root",
-      "password": "root",
-      "database": "AlterEgo_prod",
-      "host": "https://alterego.onrender.com",
-      "dialect": "mysql"
-   }
+  "development": {
+    "username": "root",
+    "password": "root",
+    "database": "AlterEgoDB_dev",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "root",
+    "database": "AlterEgoDB_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "ndfc1f5_alterego",
+    "password": "ousmane@2023",
+    "database": "ndfc1f5_alterego",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
 }
