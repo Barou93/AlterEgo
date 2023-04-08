@@ -15,6 +15,7 @@ app.use(compression());
 
 const Sequelize = require("sequelize");
 
+
 const sequelize = new Sequelize(
    'AlterEgoDB_dev',
    'root',
@@ -37,7 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 const corsOptions = {
-  origin: '*',
+  origin: process.env.FRONT_URL,
   //origin: ,
   credentials: true,
   allowedHeaders: ['sessionId', 'Content-Type'],
