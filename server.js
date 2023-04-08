@@ -13,11 +13,26 @@ const app = express();
 
 app.use(compression());
 
-//GithubPages Url
-//'https://barou93.github.io/AlterEgo/'
+const Sequelize = require("sequelize");
+
+const sequelize = new Sequelize(
+   'AlterEgoDB_dev',
+   'root',
+   'root',
+    {
+      host: '127.0.0.1',
+      dialect: 'mysql'
+    }
+  );
+
+sequelize.authenticate().then(() => {
+   console.log('Connection has been established successfully.');
+}).catch((error) => {
+   console.error('Unable to connect to the database: ', error);
+});
 
 
-require('dotenv').config('./.env');
+require('dotenv')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());

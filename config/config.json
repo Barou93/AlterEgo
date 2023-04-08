@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "ndfc1f5_alterego",
-    "password": "ousmane@2023",
-    "database": "ndfc1f5_alterego",
-    "host": "localhost",
+    "username": "root",
+    "password": "root",
+    "database": "AlterEgoDB_prod",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }
