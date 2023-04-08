@@ -17,11 +17,11 @@ const Sequelize = require("sequelize");
 
 
 const sequelize = new Sequelize(
-   'AlterEgoDB_dev',
+   'AlterEgoDB_prod',
    'root',
    'root',
     {
-      host: '127.0.0.1',
+      host: 'localhost',
       dialect: 'mysql'
     }
   );
@@ -60,6 +60,6 @@ app.use("/uploads", express.static(path.join("uploads")));
 app.use('/api/admin', adminRoutes);
 app.use('/api/article',articleRoutes);
 app.use('/api/infos', infosRoutes);
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`Listenning on PORT ${process.env.PORT}`);
 });
