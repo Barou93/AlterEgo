@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
+const helmet = require('helmet')
 const compression = require('compression');
 const configuration = require('./configuration');
 
@@ -35,6 +36,7 @@ sequelize.authenticate().then(() => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
+app.use(helmet());
 const corsOptions = {
   origin: allowedDomains,
   credentials: true,
