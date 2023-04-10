@@ -21,13 +21,14 @@ const Header = () => {
             //aria-hidden="true"
           />
         </Link>
+
       </div>
-      <nav className={`header__nav ${showLink ? "show__nav" : "hide__nav"} `}>
+      <nav className={`header__nav ${showLink ? "show__nav active-links" : "hide__nav"} `}>
         <ul>
           <li>
             <NavLink
               className={({isActive}) =>
-                isActive ? "home_navlink-active" : ""
+                isActive ? "home_navlink-active links-actived" : ""
               }
               to="/"
               //aria-hidden="true"
@@ -39,7 +40,7 @@ const Header = () => {
           <li>
             <NavLink
               className={({isActive}) =>
-                isActive ? "home_navlink-active" : ""
+                isActive ? "home_navlink-active links-actived" : ""
               }
               to="/about"
             >
@@ -49,7 +50,7 @@ const Header = () => {
           <li>
             <NavLink
               className={({isActive}) =>
-                isActive ? "home_navlink-active" : ""
+                isActive ? "home_navlink-active links-actived" : ""
               }
               to="/blog"
             >
@@ -59,7 +60,7 @@ const Header = () => {
           <li>
             <NavLink
               className={({isActive}) =>
-                isActive ? "home_navlink-active" : ""
+                isActive ? "home_navlink-active links-actived" : ""
               }
               to="/contact"
             >

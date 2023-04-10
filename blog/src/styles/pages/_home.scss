@@ -268,13 +268,12 @@
       width: 200px;
       height: 200px;
     }
-    p {
-      font-size: 25px;
+    h2 {
+      font-size: 22px;
       font-family: $secondaryfont;
-      margin-top: 20px;
-      text-align: center;
-      word-break: break-all;
-      max-width: 380px;
+      margin-top: 25px;
+      font-weight: bold;
+   
       &:hover {
         color: $primarycolor;
         text-decoration: underline;

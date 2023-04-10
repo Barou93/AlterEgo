@@ -5,16 +5,16 @@ const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet')
 const compression = require('compression');
-const configuration = require('./configuration');
+// const configuration = require('./configuration');
 
-const {port, allowedDomains} = configuration;
+// const {port, allowedDomains} = configuration;
 //Routes dependances
 const adminRoutes = require('./routes/admin.routes');
 const articleRoutes = require('./routes/article.routes');
 const infosRoutes = require('./routes/information.routes');
 const app = express();
 
-require('dotenv')
+require('dotenv').config();
 app.use(compression());
 
 // const Sequelize = require("sequelize");
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(helmet());
 const corsOptions = {
-  origin: '*',
+  origin: process.env.FRONT_URL || process.env.REMOTE_URL,
   credentials: true,
   allowedHeaders: ['sessionId', 'Content-Type'],
   exposedHeaders: ['sessionId'],
@@ -47,11 +47,7 @@ const corsOptions = {
 };
 
 
-app.use(express.static(path.join(__dirname, './blog/build')));
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, './blog/build', 'index.html'));
-});
 
 app.use(cors(corsOptions));
 const {requireAuth} = require('./middleware/auth.middleware');

@@ -72,4 +72,4 @@ const index = () => {
 };
 
 export default index;
-//<Suspense fallback={<Loader />}>
+
