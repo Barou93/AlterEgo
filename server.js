@@ -17,19 +17,19 @@ const app = express();
 require('dotenv')
 app.use(compression());
 
-const Sequelize = require("sequelize");
+// const Sequelize = require("sequelize");
 
 
-const sequelize = new Sequelize('AlterEgoDB_dev', 'root', 'root', {
-  host: 'localhost',
-  dialect: "mysql"
-})
+// const sequelize = new Sequelize('ndfc1f5_alterego','ndfc1f5_alterego', 'ousmane@2023', {
+//   host: 'localhost',
+//   dialect: "mysql"
+// })
 
-sequelize.authenticate().then(() => {
-   console.log('La connexion a été établie avec succès.');
-}).catch((error) => {
-   console.error('Impossible de se connecter à la base de donnée: ', error);
-});
+// sequelize.authenticate().then(() => {
+//    console.log('La connexion a été établie avec succès.');
+// }).catch((error) => {
+//    console.error('Impossible de se connecter à la base de donnée: ', error);
+// });
 
 
 
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(helmet());
 const corsOptions = {
-  origin: allowedDomains,
+  origin: '*',
   credentials: true,
   allowedHeaders: ['sessionId', 'Content-Type'],
   exposedHeaders: ['sessionId'],
@@ -46,6 +46,12 @@ const corsOptions = {
   preflightContinue: false,
 };
 
+
+app.use(express.static(path.join(__dirname, './blog/build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, './blog/build', 'index.html'));
+});
 
 app.use(cors(corsOptions));
 const {requireAuth} = require('./middleware/auth.middleware');
