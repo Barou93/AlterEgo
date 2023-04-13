@@ -32,12 +32,12 @@ app.use(helmet());
 //   res.setHeader('Access-Control-Allow-Origin', '*');
 //   next();
 // });
+/**allowedHeaders: ['sessionId', 'Content-Type'],
+  exposedHeaders: ['sessionId'], */
 
 const corsOptions = {
-  origin: process.env.FRONT_URL,
+  origin: '*',
   credentials: true,
-  allowedHeaders: ['sessionId', 'Content-Type'],
-  exposedHeaders: ['sessionId'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   preflightContinue: false,
 };
