@@ -34,16 +34,16 @@ app.use(helmet());
 // });
 /**allowedHeaders: ['sessionId', 'Content-Type'],
   exposedHeaders: ['sessionId'], */
-
+/*
 const corsOptions = {
   origin: '*',
   credentials: true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   preflightContinue: false,
 };
+*/
 
-
-app.use(cors(corsOptions));
+app.use(cors());
 const {requireAuth} = require('./middleware/auth.middleware');
 app.get('/jwtid', requireAuth, (req, res) => {
 
