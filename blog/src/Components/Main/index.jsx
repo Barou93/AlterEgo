@@ -4,7 +4,7 @@ import asideImg1 from "../../styles/assets/icons/Girl Mid.svg";
 import asideImg2 from "../../styles/assets/icons/Man Top.svg";
 import asideImg3 from "../../styles/assets/icons/Girl Mid2.svg";
 import perception from "../../styles/assets/icons/icon-perception.png";
-import emotions from "../../styles/assets/icons/icon-perception.png";
+import emotions from "../../styles/assets/icons/icons-emotions.png";
 import wallet from "../../styles/assets/icons/🦆 icon _wallet_.svg";
 import improve from "../../styles/assets/icons/improve.svg";
 import handshake from "../../styles/assets/icons/handshake.svg";

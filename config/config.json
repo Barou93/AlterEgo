@@ -3,7 +3,7 @@
     "username": "root",
     "password": "root",
     "database": "AlterEgoDB_dev",
-    "host": "localhost",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
@@ -14,10 +14,12 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "root",
-    "database": "AlterEgoDB_prod",
-    "host": "localhost",
+    "username": "b7fa642e302a59",
+    "password": "a9bae07a",
+    "database": "heroku_780d357f25bde18",
+    "host": "us-cdbr-east-06.cleardb.net",
     "dialect": "mysql"
   }
 }
+
+/*mysql://b7fa642e302a59:a9bae07a@us-cdbr-east-06.cleardb.net/heroku_780d357f25bde18?*/

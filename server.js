@@ -17,28 +17,19 @@ const app = express();
 require('dotenv').config();
 app.use(compression());
 
-// const Sequelize = require("sequelize");
 
-
-// const sequelize = new Sequelize('ndfc1f5_alterego','ndfc1f5_alterego', 'ousmane@2023', {
-//   host: 'localhost',
-//   dialect: "mysql"
-// })
-
-// sequelize.authenticate().then(() => {
-//    console.log('La connexion a été établie avec succès.');
-// }).catch((error) => {
-//    console.error('Impossible de se connecter à la base de donnée: ', error);
+// app.use(express.static(path.resolve(__dirname, './blog/build')));
+// app.get('*', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, './blog/build', 'index.html'));
 // });
-
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(helmet());
+
 const corsOptions = {
-  origin: process.env.FRONT_URL || process.env.REMOTE_URL,
+  origin: process.env.FRONT_URL,
   credentials: true,
   allowedHeaders: ['sessionId', 'Content-Type'],
   exposedHeaders: ['sessionId'],
@@ -62,6 +53,6 @@ app.use("/uploads", express.static(path.join("uploads")));
 app.use('/api/admin', adminRoutes);
 app.use('/api/article',articleRoutes);
 app.use('/api/infos', infosRoutes);
-app.listen(process.env.PORT , () => {
+app.listen(process.env.PORT || 5000 , () => {
   console.log(`Listenning on PORT ${process.env.PORT}`);
 });

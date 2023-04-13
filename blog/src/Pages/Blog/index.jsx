@@ -44,7 +44,7 @@ const Blog = () => {
            <div className="blog">
           <div className="blog__container">
             {!isEmpty(currentPost[0]) &&
-              articles.map((post) => {
+              currentPost.map((post) => {
                 return (
                   <li key={post.id} className="blog__resume">
                     <Link to={`/blog/${post.id}`}
