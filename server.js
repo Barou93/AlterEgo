@@ -29,12 +29,12 @@ app.use(cookieParser());
 app.use(helmet());
 
 
-const corsOptions = {
-  origin: process.env.FRONT_URL,
-  credentials: true,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  // preflightContinue: false,
-};
+// const corsOptions = {
+//   origin: process.env.FRONT_URL,
+//   credentials: true,
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   // preflightContinue: false,
+// };
 
 
 // app.use((req, res, next) => {
@@ -44,7 +44,7 @@ const corsOptions = {
 //   next();
 // });
 
-app.use(cors(corsOptions));
+app.use(cors());
 const {requireAuth} = require('./middleware/auth.middleware');
 app.get('/jwtid', requireAuth, (req, res) => {
 
