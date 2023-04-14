@@ -28,20 +28,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(helmet());
 
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   next();
-// });
-/**allowedHeaders: ['sessionId', 'Content-Type'],
-  exposedHeaders: ['sessionId'], */
-/*
+
 const corsOptions = {
-  origin: '*',
+  origin: process.env.FRONT_URL,
   credentials: true,
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   // preflightContinue: false,
 };
-*/
+
 
 // app.use((req, res, next) => {
 //   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -50,7 +44,7 @@ const corsOptions = {
 //   next();
 // });
 
-app.use(cors());
+app.use(cors(corsOptions));
 const {requireAuth} = require('./middleware/auth.middleware');
 app.get('/jwtid', requireAuth, (req, res) => {
 
