@@ -20,10 +20,10 @@ require('dotenv').config('./.env');
 app.use(compression());
 
 
-// app.use(express.static(path.resolve(__dirname, './blog/build')));
-// app.get('*', (req, res) => {
-//   res.sendFile(path.resolve(__dirname, './blog/build', 'index.html'));
-// });
+app.use(express.static(path.resolve(__dirname, './blog/build')));
+app.get('/*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, './blog/build', 'index.html'));
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -31,20 +31,20 @@ app.use(cookieParser());
 app.use(helmet());
 
 
-const corsOptions = {
-  origin: process.env.FRONT_URL,
-  credentials: true,
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  preflightContinue: false,
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: process.env.FRONT_URL,
+//   credentials: true,
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+//   preflightContinue: false,
+// };
+app.use(cors());
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', '*');
+//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+//   next();
+// });
 
 
 const {requireAuth} = require('./middleware/auth.middleware');
