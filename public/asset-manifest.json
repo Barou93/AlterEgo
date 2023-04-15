@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.f122892c.css",
-    "main.js": "./static/js/main.5dd4a205.js",
+    "main.js": "./static/js/main.85a67c1f.js",
     "static/media/RobotoSlab-VariableFont_wght.ttf": "./static/media/RobotoSlab-VariableFont_wght.24c71ebd53c3ed50accb.ttf",
     "static/media/logo_alter_ego.svg": "./static/media/logo_alter_ego.c2dc8385b84dbe89b54257ea3eeac632.svg",
     "static/media/founder_profil.png": "./static/media/founder_profil.0e9433ce2d8b8886eb4a.png",
@@ -31,17 +31,17 @@
     "static/media/growth.svg": "./static/media/growth.efbcca27257a61c3f554faa6bd669924.svg",
     "static/media/🦆 icon _wallet_.svg": "./static/media/🦆 icon _wallet_.17a989336f89ec24a08b01b9d2770894.svg",
     "static/media/profil.svg": "./static/media/profil.83dc63a31108343308189fcd1bbe74ea.svg",
-    "static/media/message.svg": "./static/media/message.e297114ed65de180e408322a5e21ef0d.svg",
     "index.html": "./index.html",
+    "static/media/message.svg": "./static/media/message.e297114ed65de180e408322a5e21ef0d.svg",
     "static/media/article.svg": "./static/media/article.1715e298e37d25cb75e7e3dc1fa10a88.svg",
     "static/media/home.svg": "./static/media/home.74519edbcf45a68ed6d95b1148f42136.svg",
     "static/media/logout_white.svg": "./static/media/logout_white.571b37cf6658f135921d6d4c7db9b8c9.svg",
     "static/media/article-img.svg": "./static/media/article-img.198e3311f769348e4bbc75c32a9cd33c.svg",
     "main.f122892c.css.map": "./static/css/main.f122892c.css.map",
-    "main.5dd4a205.js.map": "./static/js/main.5dd4a205.js.map"
+    "main.85a67c1f.js.map": "./static/js/main.85a67c1f.js.map"
   },
   "entrypoints": [
     "static/css/main.f122892c.css",
-    "static/js/main.5dd4a205.js"
+    "static/js/main.85a67c1f.js"
   ]
 }
