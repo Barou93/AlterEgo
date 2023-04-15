@@ -20,19 +20,13 @@ require('dotenv').config('./.env');
 app.use(compression());
 
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("./blog/build"));
-  app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "./blog/build/index.html"));
-  });
-}
 
-else {
-  app.use(express.static(path.join(__dirname, './blog/public')));
-  app.get("*", function(req, res) {
-    res.sendFile(path.join(__dirname, "./blog/public/index.html"));
+  app.use(express.static("public"));
+  app.get("/*", function(req, res) {
+    res.sendFile(path.join(__dirname, "public" , "index.html"));
   });
-}
+
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
