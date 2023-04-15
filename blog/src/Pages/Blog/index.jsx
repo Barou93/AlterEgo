@@ -67,11 +67,11 @@ const Blog = () => {
                         </Link>
                       </h2>
                       <div className="blog__resume__text__infos">
-                        <p>{dateFormater(post.createdAt.toUpperCase())} </p>
+                        <p>{dateFormater(post.createdAt)} </p>
                         {!isEmpty(admins[0]) &&
                           admins.map((admin) => {
                             if (admin.id === post.adminId)
-                              return <span>{admin.username.toUpperCase()}</span>;
+                              return <span>{admin.username}</span>;
                             return null;
                           })}
                       </div>
