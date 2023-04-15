@@ -19,12 +19,6 @@ require('dotenv').config('./.env');
 
 app.use(compression());
 
-  app.use(express.static("public"));
-  app.get("/*", function(req, res) {
-    res.sendFile(path.join(__dirname, "public" , "index.html"));
-  });
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
@@ -59,6 +53,12 @@ app.use("/uploads", express.static(path.join("uploads")));
 app.use('/api/admin', adminRoutes);
 app.use('/api/article',articleRoutes);
 app.use('/api/infos', infosRoutes);
+
+  app.use(express.static("public"));
+  app.get("/*", function(req, res) {
+    res.sendFile(path.join(__dirname, "public" , "index.html"));
+  });
+
 app.listen(process.env.PORT || 5000 , () => {
   console.log(`Listenning on PORT ${process.env.PORT}`);
 });
