@@ -111,6 +111,11 @@ const GetArticle = () => {
           />
         </div>
       )}{" "}
+      {isEmpty(currentArticles[0]) && (
+              <h1 className="empty-article dash-empty ct-center">
+                Aucun article disponible
+              </h1>
+            )}
     </div>
   );
 };

@@ -21,7 +21,7 @@ const ReadInfos = () => {
       <div className="dashboard__content__readinfos">
         {isLoad && (
           <>
-            <h1>Message de {message.name}</h1>
+            <h1 className="sender-name">Message de {message.name}</h1>
             <div className="dashboard__content__readinfos__container">
               <div className="dashboard__content__readinfos__userinfos">
                 <div className="dashboard__content__readinfos__userinfos__contact">

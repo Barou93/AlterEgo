@@ -57,7 +57,7 @@ tr:hover {
   position: relative;
   text-align: justify;
   &::after {
-    content: '...';
+    content: "...";
     position: absolute;
     bottom: 0;
     right: 0;
@@ -129,4 +129,10 @@ tr:hover {
     opacity: 1;
     color: #000;
   }
+}
+.sender-name {
+  font-size: 25px;
+  font-weight: bold;
+  color: $secondarycolor;
+  margin-bottom: 20px;
 }

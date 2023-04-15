@@ -25,6 +25,21 @@ const Login = () => {
         emailError.innerHTML = res.data.errors.email;
         passwordError.innerHTML = res.data.errors.password;
       } else {
+        const dateExpiration = new Date();
+        dateExpiration.setTime(dateExpiration.getTime() + 24 * 60 * 60 * 1000); // 24 h  à partir de maintenant
+        localStorage.setItem("isAuth", true);
+        document.cookie =
+          "isAuth=valeur; expires=" + dateExpiration.toUTCString() + "; path=/";
+        const cookieExpiration = new Date(
+          document.cookie.replace(
+            /(?:(?:^|.*;\s*)isAuth\s*\=\s*([^;]*).*$)|^.*$/,
+            "$1"
+          )
+        );
+        const newDate = new Date();
+        if (cookieExpiration < newDate) {
+          localStorage.clear();
+        }
         window.location = "/admin/dashboard";
       }
     });

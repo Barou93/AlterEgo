@@ -5,7 +5,7 @@ import {UidContext} from "./Components/AppContext";
 import {useDispatch} from "react-redux";
 import {getAdmin} from "./actions/admin.action";
 
-//import Loader from "./Components/Loader";
+// //import Loader from "./Components/Loader";
 
 function App() {
   const [uid, setUid] = useState(null);
@@ -25,14 +25,14 @@ function App() {
         .catch((err) => console.log("No token" + err.message));
     };
     fetchAdmin();
-    // if (loader) {
-    //   const timer = setTimeout(() => {
-    //     setLoader(false);
-    //   }, 800);
-    //   return () => {
-    //     clearTimeout(timer);
-    //   };
-    // }
+    //     // if (loader) {
+    //     //   const timer = setTimeout(() => {
+    //     //     setLoader(false);
+    //     //   }, 800);
+    //     //   return () => {
+    //     //     clearTimeout(timer);
+    //     //   };
+    //     // }
 
     if (uid) dispatch(getAdmin(uid));
   }, [uid, dispatch]);
@@ -44,6 +44,3 @@ function App() {
 }
 
 export default App;
-
-//<Routes />
-//<Loader />

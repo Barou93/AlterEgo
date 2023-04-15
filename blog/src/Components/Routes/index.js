@@ -18,6 +18,7 @@ import DeleteArticle from "../../Admin/DeleteArticle";
 import DeleteInfos from "../../Admin/DeleteInfos";
 import Sidebar from "../Sidebar";
 import Dashboard from "../../Admin/Dashboard";
+import ProtectedRoutes from "../ProtectedRoutes";
 
 // const Home = lazy(() => import("../../Pages/Home"));
 // const Blog = lazy(() => import("../../Pages/Blog"));
@@ -49,22 +50,27 @@ const index = () => {
         <Route path="/admin/inscription" element={<Register />} />
         <Route path="/admin/connexion" element={<Login />} />
 
-        <Route path="/admin" element={<Sidebar />}>
-          <Route path="/admin/dashboard" element={<Dashboard />} />
-          <Route path="/admin/article/create" element={<CreateArticle />} />
-          <Route path="/admin/message" element={<GetInfos />} />
-          <Route path="/admin/article" element={<GetArticle />} />
-          <Route path="/admin/message/:id" element={<ReadInfos />} />
-          <Route
-            path="/admin/article/update-article/:id"
-            element={<UpdatedArticle />}
-          />
-          <Route
-            path="/admin/article/delete-article"
-            element={<DeleteArticle />}
-          />
-          <Route path="/admin/message/delete-infos" element={<DeleteInfos />} />
-          <Route path="/admin/profil/" element={<Profil />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/admin" element={<Sidebar />}>
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/article/create" element={<CreateArticle />} />
+            <Route path="/admin/message" element={<GetInfos />} />
+            <Route path="/admin/article" element={<GetArticle />} />
+            <Route path="/admin/message/:id" element={<ReadInfos />} />
+            <Route
+              path="/admin/article/update-article/:id"
+              element={<UpdatedArticle />}
+            />
+            <Route
+              path="/admin/article/delete-article"
+              element={<DeleteArticle />}
+            />
+            <Route
+              path="/admin/message/delete-infos"
+              element={<DeleteInfos />}
+            />
+            <Route path="/admin/profil/" element={<Profil />} />
+          </Route>
         </Route>
       </Routes>
     </Router>
@@ -72,4 +78,3 @@ const index = () => {
 };
 
 export default index;
-

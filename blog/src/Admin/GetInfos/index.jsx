@@ -34,7 +34,7 @@ const GetInfos = () => {
       
       {loadMessage && !isEmpty(currentMessages[0]) && (
          <div className="dashboard__content__container__inbox">
-        <h1 className="dashboard__title">Boite de reception</h1>
+        <h1 className="dashboard__title">Boite de réception</h1>
         <div className="dashboard__content__container__inbox__container">
           <div className="dashboard__content__container__inbox__menu">
             <table className="content-table">
@@ -85,7 +85,12 @@ const GetInfos = () => {
           currentPage={currentPage}
         />
       </div>
-     )}
+      )}
+      {isEmpty(currentMessages[0]) && (
+              <h1 className="empty-article dash-empty ct-center">
+                La boite de réception est vide
+              </h1>
+            )}
     </div>
   );
 };

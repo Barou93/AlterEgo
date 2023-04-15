@@ -5,9 +5,7 @@ const cors = require('cors');
 const path = require('path');
 const helmet = require('helmet')
 const compression = require('compression');
-// const configuration = require('./configuration');
 
-// const {port, allowedDomains} = configuration;
 //Routes dependances
 const adminRoutes = require('./routes/admin.routes');
 const articleRoutes = require('./routes/article.routes');
@@ -33,12 +31,7 @@ app.use(helmet());
 // };
 app.use(cors());
 
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-//   next();
-// });
+
 
 
 const {requireAuth} = require('./middleware/auth.middleware');
@@ -54,10 +47,18 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/article',articleRoutes);
 app.use('/api/infos', infosRoutes);
 
-  app.use(express.static("public"));
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("public"));
   app.get("/*", function(req, res) {
     res.sendFile(path.join(__dirname, "public" , "index.html"));
   });
+}
+else {
+   app.use(express.static("./blog/build"));
+  app.get("/*", function(req, res) {
+    res.sendFile(path.join(__dirname, "./blog/build/index.html"));
+  });
+ }
 
 app.listen(process.env.PORT || 5000 , () => {
   console.log(`Listenning on PORT ${process.env.PORT}`);
