@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.f122892c.css",
-    "main.js": "./static/js/main.85a67c1f.js",
+    "main.css": "./static/css/main.7d96c891.css",
+    "main.js": "./static/js/main.ec66cf56.js",
     "static/media/RobotoSlab-VariableFont_wght.ttf": "./static/media/RobotoSlab-VariableFont_wght.24c71ebd53c3ed50accb.ttf",
     "static/media/logo_alter_ego.svg": "./static/media/logo_alter_ego.c2dc8385b84dbe89b54257ea3eeac632.svg",
     "static/media/founder_profil.png": "./static/media/founder_profil.0e9433ce2d8b8886eb4a.png",
@@ -37,11 +37,11 @@
     "static/media/home.svg": "./static/media/home.74519edbcf45a68ed6d95b1148f42136.svg",
     "static/media/logout_white.svg": "./static/media/logout_white.571b37cf6658f135921d6d4c7db9b8c9.svg",
     "static/media/article-img.svg": "./static/media/article-img.198e3311f769348e4bbc75c32a9cd33c.svg",
-    "main.f122892c.css.map": "./static/css/main.f122892c.css.map",
-    "main.85a67c1f.js.map": "./static/js/main.85a67c1f.js.map"
+    "main.7d96c891.css.map": "./static/css/main.7d96c891.css.map",
+    "main.ec66cf56.js.map": "./static/js/main.ec66cf56.js.map"
   },
   "entrypoints": [
-    "static/css/main.f122892c.css",
-    "static/js/main.85a67c1f.js"
+    "static/css/main.7d96c891.css",
+    "static/js/main.ec66cf56.js"
   ]
 }
